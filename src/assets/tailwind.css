@@ -1,0 +1,183 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.service-card {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.service-card:hover {
+  transform: scale(1.03);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px indigo solid;
+}
+
+#datepicker {
+  width: 200px;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.dp-custom-input {
+  box-shadow: 0 0 6px #1976d2;
+  color: #1976d2;
+}
+.dp-custom-input:hover {
+  border-color: #1976d2;
+}
+
+.result {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.appointment-check {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.bn39 {
+  background-image: linear-gradient(135deg, #008aff, #86d472);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: block;
+  height: 40px;
+  font-size: 1.1em;
+  font-weight: 400;
+  padding: 3px;
+  position: relative;
+  text-decoration: none;
+  width: 8em;
+  z-index: 2;
+}
+.bn39:hover {
+  color: #fff;
+}
+.bn39 .bn39span {
+  align-items: center;
+  background: #0e0e10;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+.bn39:hover .bn39span {
+  background: transparent;
+}
+
+.calendar {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.vc-container .vc-weekday-1 {
+  color: red;
+  font: 600 13px/1.5em 'Open Sans', sans-serif;
+}
+
+.vc-container .vc-weekday-1,
+.vc-container .vc-weekday-2,
+.vc-container .vc-weekday-3,
+.vc-container .vc-weekday-4,
+.vc-container .vc-weekday-5,
+.vc-container .vc-weekday-6,
+.vc-container .vc-weekday-7 {
+  background-color: #e5e2da;
+}
+
+.vc-container .vc-weekday-2,
+.vc-container .vc-weekday-3,
+.vc-container .vc-weekday-4,
+.vc-container .vc-weekday-5,
+.vc-container .vc-weekday-6,
+.vc-container .vc-weekday-7 {
+  color: #000;
+  font: 600 13px/1.5em 'Open Sans', sans-serif;
+}
+
+.vc-container .vc-month {
+  color: red;
+}
+.okicon:hover {
+  scale: 1.1;
+  transition: all 0.3s ease-in-out;
+}
+.okicon:active {
+  scale: 0.8;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+  background-color: #ccc;
+}
+.logout-button:active {
+  scale: 0.95;
+  transition: all 0.3s ease-in-out;
+  background-color: #ccc;
+}
+.reg-container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.nav-buttons {
+  color: #fff;
+}
+.nav-buttons:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  color: #fff;
+  scale: 1.1;
+  transition: all 0.3s ease-in-out;
+}
+.home-bg {
+  position: relative;
+  background-image: url('../assets//images/barber-shop.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  margin-top: -24px;
+}
+.home-bg::before {
+  content: '';
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.notHomeBg {
+  z-index: 10;
+}
+
+.bn46 {
+  width: 100px;
+  height: 50px;
+}
+.bn45 {
+  width: 100px;
+  height: 32px;
+}
+.contact,
+.map {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.changeButton:active {
+  scale: 0.95;
+  transition: all 0.3s ease-in-out;
+  background-color: #ccc;
+}
+.input-border {
+  border-bottom: #ccc solid 1px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
+}
+.input-border:focus {
+  border: #ccc solid 1px;
+  outline: none;
+}
