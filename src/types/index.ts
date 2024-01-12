@@ -11,7 +11,7 @@ export interface FormDataServices {
 }
 
 export interface FormDataLogin {
-  email: string;
+  username: string;
   password: string;
 }
 
