@@ -89,10 +89,10 @@
 <script setup lang="ts">
 import type { Errors, FormData } from '@/types';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import * as Yup from 'yup';
 import axios from '../api/axios';
 import { setItem } from '../helper/persistanceStorage';
-import router from '../router/index';
 
 const model = ref('');
 
@@ -104,7 +104,7 @@ const formData = ref<FormData>({
 });
 
 const isSubmitting = ref(false);
-
+const router = useRouter();
 const schema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Username must be at least 3 characters')
@@ -124,7 +124,6 @@ const clearError = (field: keyof Errors) => {
   errors.value[field] = '';
 };
 
-
 const onSubmit = async (e: any) => {
   e.preventDefault();
   try {
@@ -138,7 +137,7 @@ const onSubmit = async (e: any) => {
     await schema.validate(formData.value, { abortEarly: false });
 
     const response = await axios.post(
-      'http://localhost:8080/api/authentication/register',
+      '/api/api/authentication/register',
       formData.value,
       config
     );

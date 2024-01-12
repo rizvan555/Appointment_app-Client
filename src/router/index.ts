@@ -1,9 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import About from '../views/About.vue';
+import Kontakt from '../views/Contact.vue';
+import Galerie from '../views/Gallery.vue';
 import Homeview from '../views/Homeview.vue';
-import Termin from '../views/Termin.vue';
-import SignUp from '../views/SignUp.vue';
-import SignIn from '../views/SignIn.vue';
+import Login from '../views/Login.vue';
+import Profile from '../views/Profile.vue';
+import Register from '../views/Register.vue';
 import SignOut from '../views/SignOut.vue';
+import Team from '../views/Team.vue';
+import Termin from '../views/Termin.vue';
+import Admin from '../views/dashboard/Admin.vue';
 import Service1 from '../views/service1.vue';
 import Service2 from '../views/service2.vue';
 import Service3 from '../views/service3.vue';
@@ -13,12 +19,6 @@ import Service6 from '../views/service6.vue';
 import Service7 from '../views/service7.vue';
 import Service8 from '../views/service8.vue';
 import Service9 from '../views/service9.vue';
-import Admin from '../views/dashboard/Admin.vue';
-import Profile from '../views/Profile.vue';
-import About from '../views/About.vue';
-import Team from '../views/Team.vue';
-import Kontakt from '../views/Contact.vue';
-import Galerie from '../views/Gallery.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,14 +39,14 @@ const router = createRouter({
       component: Termin,
     },
     {
-      path: '/signUp',
-      name: 'signUp',
-      component: SignUp,
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     {
-      path: '/signIn',
-      name: 'signIn',
-      component: SignIn,
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
     {
       path: '/signOut',

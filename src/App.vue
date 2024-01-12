@@ -1,13 +1,6 @@
 <script setup lang="ts">
-import NavigationBar from './components/NavigationBar.vue';
 import FooterBar from './components/FooterBar.vue';
-import { useAuthStore } from './stores/useAuth';
-
-const store = useAuthStore();
-
-function logout() {
-  store.logout();
-}
+import NavigationBar from './components/NavigationBar.vue';
 </script>
 
 <template>

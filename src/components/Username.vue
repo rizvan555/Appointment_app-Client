@@ -9,14 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { getItem } from '../helper/persistanceStorage';
-import { useServiceStore } from '../stores/useServiceStore';
 import type { User } from '@/types';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
+import { getItem } from '../helper/persistanceStorage';
 
 const users = ref<User[]>([]);
-const serviceStore = useServiceStore();
 
 onMounted(async () => {
   try {

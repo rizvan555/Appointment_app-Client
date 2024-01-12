@@ -1,8 +1,8 @@
-import Profile from '../assets/Icons/Profile.vue';
+import { defineStore } from 'pinia';
 import LogIn from '../assets/Icons/LogIn.vue';
 import LogOut from '../assets/Icons/LogOut.vue';
+import Profile from '../assets/Icons/Profile.vue';
 import Register from '../assets/Icons/Register.vue';
-import { defineStore } from 'pinia';
 
 export const useNavbarStore = defineStore('navStore', {
   state: () => ({
@@ -17,15 +17,15 @@ export const useNavbarStore = defineStore('navStore', {
       },
       {
         id: 2,
-        name: 'SignIn',
-        path: '/signIn',
+        name: 'Login',
+        path: '/login',
         isLogged: false,
         icon: LogIn,
       },
       {
         id: 3,
-        name: 'SignUp',
-        path: '/signUp',
+        name: 'Register',
+        path: '/register',
         isLogged: false,
         icon: Register,
       },

@@ -113,8 +113,6 @@ const onSubmit = async (e: any) => {
       formData.value,
       config
     );
-    console.log(formData.value);
-
     if (response.data.redirect) {
       router.push(response.data.redirect);
     } else {
