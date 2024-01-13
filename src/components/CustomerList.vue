@@ -17,8 +17,12 @@
           <td class="text-[13px]">{{ user.email }}</td>
           <td class="text-[13px]">{{ user.phone }}</td>
           <!-- <td class="text-[13px] w-[26vw]">{{ user.selectedService }}</td> -->
-            <td class="text-[13px] w-[17vw]">{{ user.createTime.split('T')[0] }}</td>
-          <!-- <td class="text-[13px] w-[8vw]">{{ user.selectedTimeStart }}</td> -->
+          <td class="text-[13px] w-[17vw]">
+            {{ user.createTime.split('T')[0] }}
+          </td>
+          <td class="text-[13px] w-[8vw]">
+            {{ user.createTime.split('T')[1].split('.')[0].slice(0, 5) }}
+          </td>
         </tr>
       </tbody>
     </v-table>
@@ -29,10 +33,8 @@
 import type { CustomerListProps } from '@/types';
 import { computed, onMounted, ref } from 'vue';
 import { VTable } from 'vuetify/components';
-import { useUsersStore } from '../stores/useAllUsers';
 
 const userList = ref<CustomerListProps[]>([]);
-const allUsers = useUsersStore();
 
 const sortedUserList = computed(() => {
   return userList.value.sort((a: any, b: any) => {
@@ -60,12 +62,4 @@ onMounted(async () => {
     console.error('Error fetching user list:', error);
   }
 });
-
-// onMounted(async () => {
-//   try {
-//     await allUsers.getAllUsers();
-//   } catch (error) {
-//     console.error('Error fetching user list:', error);
-//   }
-// });
 </script>
