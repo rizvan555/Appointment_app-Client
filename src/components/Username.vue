@@ -19,7 +19,7 @@ const users = ref<User[]>([]);
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
+    const response = await axios.get('/api/users/allUsers', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -29,7 +29,7 @@ onMounted(async () => {
       users.value = [response.data];
     }
   } catch (error) {
-    // console.error('Error fetching users data:', error);
+    console.error('Error fetching users data:', error);
   }
 });
 </script>

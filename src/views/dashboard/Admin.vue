@@ -77,23 +77,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import type { User } from '@/types';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 import {
-  VCard,
+  VBtn,
+  VDivider,
   VLayout,
-  VNavigationDrawer,
   VList,
   VListItem,
-  VDivider,
-  VMain,
-  VBtn,
+  VNavigationDrawer,
 } from 'vuetify/components';
-import { onMounted } from 'vue';
-import { getItem } from '../../helper/persistanceStorage';
-import axios from 'axios';
-import type { User } from '@/types';
-import { useUsersStore } from '../../stores/useAllUsers';
 import CustomerList from '../../components/CustomerList.vue';
+import { getItem } from '../../helper/persistanceStorage';
+import { useUsersStore } from '../../stores/useAllUsers';
 import Profile from '../../views/Profile.vue';
 
 const drawer = ref(true);
@@ -101,8 +98,7 @@ const rail = ref(true);
 const users = ref<User[]>([]);
 const value = ref('home');
 const usersStore = useUsersStore();
-const allUsers = usersStore.allUsers;
-console.log(allUsers);
+console.log(usersStore);
 
 const updateValue = (newValue: any) => {
   value.value = newValue;
@@ -111,7 +107,7 @@ const updateValue = (newValue: any) => {
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
+    const response = await axios.get('/user', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

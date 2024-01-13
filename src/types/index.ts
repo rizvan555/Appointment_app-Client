@@ -6,7 +6,7 @@ export interface FormData {
 }
 export interface FormDataServices {
   [x: string]: any;
-  date: string;
+  createTime: string;
   selectedTimeStart: string;
 }
 
@@ -41,7 +41,7 @@ export interface CustomerListProps {
   username: string;
   email: string;
   phone: string;
-  date: string;
+  createTime: string;
   selectedService: string;
   selectedTimeStart: string;
 }

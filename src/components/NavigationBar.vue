@@ -91,7 +91,6 @@ import type { User } from '@/types';
 import { computed } from 'vue';
 import Username from './Username.vue';
 import AvatarLetter from './AvatarLetter.vue';
-import Dots from '../assets/Icons/Dots.vue';
 
 const allNavs = useNavbarStore();
 const users = ref<User[]>([]);

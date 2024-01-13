@@ -8,9 +8,10 @@ export const useUsersStore = defineStore('usersStore', {
   getters: {},
   actions: {
     async getAllUsers() {
-      const response = await axios.get('http://localhost:5173/api/user');
+      const response = await axios.get(
+        'http://localhost:5173/api/api/users/allUsers'
+      );
       const data = await response.data;
-      console.log(data);
       this.allUsers = data;
     },
   },

@@ -139,7 +139,7 @@ const updatedInfo = ref<UpdatedInfo>({
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
+    const response = await axios.get('/api/user', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

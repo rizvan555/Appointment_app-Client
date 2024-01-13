@@ -16,9 +16,9 @@
           <td class="text-[13px] w-[20vw]">{{ user.username }}</td>
           <td class="text-[13px]">{{ user.email }}</td>
           <td class="text-[13px]">{{ user.phone }}</td>
-          <td class="text-[13px] w-[26vw]">{{ user.selectedService }}</td>
-          <td class="text-[13px] w-[17vw]">{{ user.date.split('T')[0] }}</td>
-          <td class="text-[13px] w-[8vw]">{{ user.selectedTimeStart }}</td>
+          <!-- <td class="text-[13px] w-[26vw]">{{ user.selectedService }}</td> -->
+            <td class="text-[13px] w-[17vw]">{{ user.createTime.split('T')[0] }}</td>
+          <!-- <td class="text-[13px] w-[8vw]">{{ user.selectedTimeStart }}</td> -->
         </tr>
       </tbody>
     </v-table>
@@ -27,20 +27,22 @@
 
 <script setup lang="ts">
 import type { CustomerListProps } from '@/types';
-import { ref, onMounted, computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { VTable } from 'vuetify/components';
+import { useUsersStore } from '../stores/useAllUsers';
 
 const userList = ref<CustomerListProps[]>([]);
+const allUsers = useUsersStore();
 
 const sortedUserList = computed(() => {
-  return userList.value.sort((a, b) => {
+  return userList.value.sort((a: any, b: any) => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   });
 });
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:5173/api/users/service', {
+    const response = await fetch('/api/api/users/allUsers', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -53,8 +55,17 @@ onMounted(async () => {
 
     const data = await response.json();
     userList.value = data;
+    console.log(userList.value);
   } catch (error) {
     console.error('Error fetching user list:', error);
   }
 });
+
+// onMounted(async () => {
+//   try {
+//     await allUsers.getAllUsers();
+//   } catch (error) {
+//     console.error('Error fetching user list:', error);
+//   }
+// });
 </script>
