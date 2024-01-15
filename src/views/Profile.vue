@@ -114,13 +114,12 @@
 </template>
 
 <script setup lang="ts">
-import { getItem } from '../helper/persistanceStorage';
 import type { UpdatedInfo, User } from '@/types';
 import axios from 'axios';
-import { ref } from 'vue';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import PenIcon from '../assets/Icons/PenIcon.vue';
 import CloseIcon from '../assets/Icons/closeIcon.png';
+import { getItem } from '../helper/persistanceStorage';
 
 const users = ref<User[]>([]);
 const user = ref<User>({
@@ -139,15 +138,19 @@ const updatedInfo = ref<UpdatedInfo>({
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/api/users/dashboard/admin/allUser', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      '/api/api/users/dashboard/admin/allUsers',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-    if (response && response.data) {
-      users.value = [response.data];
+    if (response && response.data && Array.isArray(response.data)) {
+      users.value = response.data;
       user.value = response.data[0];
+      console.log('user', user.value);
     }
   } catch (error) {
     console.error('Error fetching users data:', error);

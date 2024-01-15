@@ -107,17 +107,14 @@ const updateValue = (newValue: any) => {
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get(
-      '/api/api/users/dashboard/admin/allUsers',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get('/api/api/users/allUsers', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    if (response && response.data) {
-      allUsers.value = [response.data];
+    if (response && response.data && Array.isArray(response.data)) {
+      allUsers.value = response.data;
     }
   } catch (error) {
     console.error('Error fetching users data:', error);
