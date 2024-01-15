@@ -4,9 +4,9 @@ export interface FormData {
   password: string;
   phone: string;
 }
-export interface FormDataServices {
+export interface FormDateServices {
   [x: string]: any;
-  createTime: string;
+  create_time: string;
   selectedTimeStart: string;
 }
 
@@ -20,11 +20,18 @@ export interface Errors {
 }
 
 export interface User {
-  _id: string;
+  id: string;
   username: string;
   email: string;
   phone: string;
   services: Service[];
+}
+export interface UserNotService {
+  id: string;
+  username: string;
+  email: string;
+  phone: string;
+  password: string;
 }
 
 export interface Service {
@@ -37,7 +44,7 @@ export interface Service {
 }
 
 export interface CustomerListProps {
-  _id: number;
+  id: number;
   username: string;
   email: string;
   phone: string;

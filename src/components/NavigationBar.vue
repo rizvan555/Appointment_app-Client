@@ -52,6 +52,7 @@
             >
               <AvatarLetter />
             </button>
+
             <button
               v-if="!users || users.length === 0"
               class="border border-white z-30 active:scale-95 transition-all"
@@ -81,34 +82,37 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useNavbarStore } from '../stores/useNavbar';
-import { VMenu, VList, VListItem, VListItemTitle } from 'vuetify/components';
-import { getItem } from '../helper/persistanceStorage';
+import type { UserNotService } from '@/types';
 import axios from 'axios';
-import { ref } from 'vue';
-import type { User } from '@/types';
-import { computed } from 'vue';
-import Username from './Username.vue';
+import { computed, onMounted, ref } from 'vue';
+import { VList, VListItem, VListItemTitle, VMenu } from 'vuetify/components';
+import { getItem } from '../helper/persistanceStorage';
+import { useNavbarStore } from '../stores/useNavbar';
 import AvatarLetter from './AvatarLetter.vue';
+import Username from './Username.vue';
 
 const allNavs = useNavbarStore();
-const users = ref<User[]>([]);
+const users = ref<UserNotService[]>([]);
 
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      '/api/api/users/dashboard/admin/allUsers',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('response', response);
 
     if (response && response.data) {
       users.value = [response.data];
+      console.log('users', users.value);
     }
   } catch (error) {
-    // console.error('Error fetching users data:', error);
+    console.error('Error fetching users data:', error);
   }
 });
 

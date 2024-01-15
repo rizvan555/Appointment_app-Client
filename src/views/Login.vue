@@ -74,6 +74,7 @@
 import type { Errors, FormDataLogin } from '@/types';
 import { ref } from 'vue';
 import axios from '../api/axios';
+import { getItem, setItem } from '../helper/persistanceStorage';
 import router from '../router/index';
 
 const formData = ref<FormDataLogin>({
@@ -113,6 +114,13 @@ const onSubmit = async (e: any) => {
       formData.value,
       config
     );
+    console.log('Response from Backend:', response);
+
+    const userToken = response.data.refreshToken;
+    console.log('Token from Backend:', userToken);
+    setItem('token', userToken);
+    console.log('Token set to localStorage:', getItem('token'));
+
     if (response.data.redirect) {
       router.push(response.data.redirect);
     } else {

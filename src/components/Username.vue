@@ -9,24 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import type { User } from '@/types';
+import type { UserNotService } from '@/types';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { getItem } from '../helper/persistanceStorage';
 
-const users = ref<User[]>([]);
+const users = ref<UserNotService[]>([]);
 
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users/allUsers', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      '/api/api/users/dashboard/admin/allUsers',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-    if (response && response.data) {
-      users.value = [response.data];
+    if (response && response.data && Array.isArray(response.data)) {
+      users.value = response.data;
     }
   } catch (error) {
     console.error('Error fetching users data:', error);

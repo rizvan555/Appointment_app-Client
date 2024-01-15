@@ -148,25 +148,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, onMounted, ref } from 'vue';
+import type { CustomerListProps, Errors, FormDateServices } from '@/types';
 import axios from 'axios';
-import { getItem, setItem } from '../helper/persistanceStorage';
+import { computed, inject, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import type { CustomerListProps, Errors, FormDataServices } from '@/types';
-import AttentionIcon from '../assets/Icons/icons8-attention.gif';
-import { useServiceStore } from '../stores/useServiceStore';
 import type { VDatePicker } from 'vuetify/components';
-import MaterialSymbolsAlarm from '../assets/Icons/Clock.vue';
-import { watch } from 'vue';
-import OkIcon from '../assets/Icons/OkIcon.vue';
-import Disabled from '../assets/Icons/Disabled.vue';
 import calendar from '../assets/Icons/Calendar.vue';
+import MaterialSymbolsAlarm from '../assets/Icons/Clock.vue';
 import clock1 from '../assets/Icons/Clock1.vue';
+import Disabled from '../assets/Icons/Disabled.vue';
+import OkIcon from '../assets/Icons/OkIcon.vue';
 import service from '../assets/Icons/Service.vue';
+import AttentionIcon from '../assets/Icons/icons8-attention.gif';
+import { getItem, setItem } from '../helper/persistanceStorage';
+import { useServiceStore } from '../stores/useServiceStore';
 
 type BlockedTimes = string[];
-const formDataServices = ref<FormDataServices>({
-  date: '',
+const formDataServices = ref<FormDateServices>({
+  create_time: '',
   selectedTimeStart: '',
 });
 
@@ -371,7 +370,7 @@ onMounted(async () => {
         withCredentials: true,
       };
 
-      const response = await axios.get('/api/users', config);
+      const response = await axios.get('/api/api/users/allUsers', config);
       userDetails.value = response.data;
     }
   } catch (error) {
@@ -381,7 +380,7 @@ onMounted(async () => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:5173/api/users/service', {
+    const response = await fetch('/api/api/services/getAllServices', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -425,7 +424,7 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       : '';
 
     const response = await axios.post(
-      '/api/users/service',
+      '/api/api/services/addService',
       {
         date: selectedDate.toISOString().split('T')[0],
         email: userDetails.value.email,

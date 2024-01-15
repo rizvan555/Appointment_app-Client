@@ -9,11 +9,11 @@
 </template>
 
 <script setup lang="ts">
+import type { User } from '@/types';
+import { onMounted, ref } from 'vue';
+import axios from '../api/axios';
 import { getItem } from '../helper/persistanceStorage';
 import { useServiceStore } from '../stores/useServiceStore';
-import type { User } from '@/types';
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
 
 const users = ref<User[]>([]);
 const serviceStore = useServiceStore();
@@ -21,7 +21,7 @@ const serviceStore = useServiceStore();
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
+    const response = await axios.get('/api/api/users/dashboard/admin/allUser', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

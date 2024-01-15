@@ -33,7 +33,7 @@ const props = defineProps([]);
 const router = useRouter();
 
 const signOut = () => {
-  localStorage.removeItem('token');
+  localStorage.removeItem('refreshToken');
 
   console.log('Signing out...');
   router.push('/');

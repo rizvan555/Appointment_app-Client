@@ -124,7 +124,7 @@ import CloseIcon from '../assets/Icons/closeIcon.png';
 
 const users = ref<User[]>([]);
 const user = ref<User>({
-  _id: '',
+  id: '',
   username: '',
   email: '',
   phone: '',
@@ -139,7 +139,7 @@ const updatedInfo = ref<UpdatedInfo>({
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/user', {
+    const response = await axios.get('/api/api/users/dashboard/admin/allUser', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -168,7 +168,7 @@ const acceptInfo = async (e: any) => {
       },
       withCredentials: true,
     };
-    const userId = users.value[0]._id;
+    const userId = users.value[0].id;
 
     if (!userId) {
       console.error('User ID is undefined.');

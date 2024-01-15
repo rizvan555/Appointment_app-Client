@@ -8,7 +8,7 @@
         @click="rail = false"
       >
         <v-list-item
-          v-for="user in users"
+          v-for="user in allUsers"
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
           :title="user.username"
           nav
@@ -95,7 +95,7 @@ import Profile from '../../views/Profile.vue';
 
 const drawer = ref(true);
 const rail = ref(true);
-const users = ref<User[]>([]);
+const allUsers = ref<User[]>([]);
 const value = ref('home');
 const usersStore = useUsersStore();
 console.log(usersStore);
@@ -107,14 +107,17 @@ const updateValue = (newValue: any) => {
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/user', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      '/api/api/users/dashboard/admin/allUsers',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response && response.data) {
-      users.value = [response.data];
+      allUsers.value = [response.data];
     }
   } catch (error) {
     console.error('Error fetching users data:', error);

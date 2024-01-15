@@ -144,6 +144,7 @@ const onSubmit = async (e: any) => {
 
     const userToken = response.data.token;
     setItem('token', userToken);
+    console.log('User Token:', userToken);
 
     console.log('Server Response:', response.data);
 

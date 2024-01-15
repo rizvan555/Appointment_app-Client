@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type { User } from '@/types';
-import { getItem } from '../helper/persistanceStorage';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import Service from '../components/Service.vue';
+import { getItem } from '../helper/persistanceStorage';
 
 const users = ref<User[]>([]);
 
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/users', {
+    const response = await axios.get('/api/api/users', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

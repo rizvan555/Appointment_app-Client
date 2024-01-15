@@ -6,7 +6,7 @@
           <th class="text-left">Name</th>
           <th class="text-left">E-Mail</th>
           <th class="text-left">Phone</th>
-          <th class="text-left">Service</th>
+          <!-- <th class="text-left">Service</th> -->
           <th class="text-left">Datum</th>
           <th class="text-left">Uhr</th>
         </tr>
@@ -44,7 +44,7 @@ const sortedUserList = computed(() => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('/api/api/users/allUsers', {
+    const response = await fetch('/api/api/users/dashboard/admin/allUsers', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

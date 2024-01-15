@@ -1,17 +1,21 @@
-export const getItem = (key: string) => {
+export const setItem = (key: string, data: any) => {
   try {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : null;
+    console.log('Setting data to localStorage:', data);
+    localStorage.setItem(key, JSON.stringify(data));
+    console.log('Data successfully set to localStorage.');
   } catch (e) {
-    console.error('Error in getting data from localStorage', e);
-    return null;
+    console.error('Error in setting data to localStorage', e);
   }
 };
 
-export const setItem = (key: string, data: any) => {
+export const getItem = (key: string) => {
   try {
-    localStorage.setItem(key, JSON.stringify(data));
+    const item = localStorage.getItem(key);
+    const parsedItem = item ? JSON.parse(item) : null;
+    console.log('Parsed data from localStorage:', parsedItem);
+    return parsedItem;
   } catch (e) {
-    console.error('Error in setting data to localStorage', e);
+    console.error('Error in getting data from localStorage', e);
+    return null;
   }
 };
