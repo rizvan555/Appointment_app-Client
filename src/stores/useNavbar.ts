@@ -4,6 +4,7 @@ import LogOut from '../assets/Icons/LogOut.vue';
 import Profile from '../assets/Icons/Profile.vue';
 import Register from '../assets/Icons/Register.vue';
 
+
 export const useNavbarStore = defineStore('navStore', {
   state: () => ({
     navs: [{ id: 1, name: 'Home', path: '/' }],

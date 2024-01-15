@@ -119,7 +119,7 @@ onMounted(async () => {
 
 const filteredMenu = computed(() => {
   return allNavs.menu.filter((myMenu) => {
-    return users.value.length > 0 ? myMenu.isLogged : !myMenu.isLogged;
+    return token ? myMenu.isLogged : !myMenu.isLogged;
   });
 });
 </script>

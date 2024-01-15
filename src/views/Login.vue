@@ -114,14 +114,16 @@ const onSubmit = async (e: any) => {
       formData.value,
       config
     );
-    console.log('Response from Backend:', response);
 
     const userToken = response.data.refreshToken;
-    console.log('Token from Backend:', userToken);
     setItem('token', userToken);
     console.log('Token set to localStorage:', getItem('token'));
 
     if (response.data.redirect) {
+      location.reload();
+      router.afterEach(() => {
+        location.reload();
+      });
       router.push(response.data.redirect);
     } else {
       router.push({ name: 'home' });

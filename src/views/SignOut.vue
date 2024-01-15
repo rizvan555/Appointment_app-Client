@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-[45vw] my-28 py-10 px-10 rounded mx-auto items-center justify-center reg-container"
+    class="flex w-[45vw] my-32 py-16 px-10 rounded mx-auto items-center justify-center reg-container"
   >
     <div class="text-center">
       <h3 class="text-xl font-bold mb-6">
@@ -35,6 +35,11 @@ const signOut = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   console.log('Signing out...');
+  location.reload();
+
+  router.afterEach(() => {
+    location.reload();
+  });
   router.push('/');
 };
 

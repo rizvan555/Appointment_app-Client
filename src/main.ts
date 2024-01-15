@@ -16,6 +16,7 @@ import VCalendar from 'v-calendar';
 import 'v-calendar/style.css';
 import { setupCalendar } from 'v-calendar';
 
+
 const app = createApp(App);
 const vuetify = createVuetify();
 
