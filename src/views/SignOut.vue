@@ -29,12 +29,11 @@ import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
 
 const props = defineProps([]);
-
 const router = useRouter();
 
 const signOut = () => {
-  localStorage.removeItem('refreshToken');
-
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
   console.log('Signing out...');
   router.push('/');
 };

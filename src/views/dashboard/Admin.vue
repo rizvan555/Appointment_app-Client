@@ -10,10 +10,10 @@
         <v-list-item
           v-for="user in allUsers"
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-          :title="user.username"
           nav
           @click.stop="rail = !rail"
         >
+          <b>User:</b> {{ user.username }}
           <template v-slot:append>
             <v-btn
               variant="text"

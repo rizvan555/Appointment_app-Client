@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <div class="flex flex-col items-center justify-center relative">
           <!-- <img :src="Barber" alt="razor" class="w-20 z-0" /> -->
-          <div class="flex items-center z-20 font-serif pl-8">
+          <div class="flex items-center z-20 font-serif pl-1">
             <h1 class="text-xl font-semibold text-white">
               <a href="/">Barberamania</a>
             </h1>
@@ -38,8 +38,8 @@
     </div>
 
     <div class="flex items-center gap-3 text-white ml-4">
-      <div class="flex items-center gap-1">
-        <h1 v-if="users && users.length > 0">Hi,</h1>
+      <div class="flex items-center gap-1" v-if="hasToken">
+        <h1>Hi,</h1>
         <Username />
       </div>
       <div class="d-flex justify-space-around">
@@ -48,13 +48,13 @@
             <button
               class="border rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-[#e5e5e5]"
               v-bind="props"
-              v-if="users && users.length > 0"
+              v-if="hasToken"
             >
               <AvatarLetter />
             </button>
 
             <button
-              v-if="!users || users.length === 0"
+              v-if="!hasToken"
               class="border border-white z-30 active:scale-95 transition-all"
               v-bind="props"
             >
@@ -93,6 +93,8 @@ import Username from './Username.vue';
 
 const allNavs = useNavbarStore();
 const users = ref<UserNotService[]>([]);
+const token = getItem('token');
+const hasToken = ref(token !== null);
 
 onMounted(async () => {
   try {
@@ -105,11 +107,10 @@ onMounted(async () => {
         },
       }
     );
-    console.log('response', response);
-
-    if (response && response.data) {
-      users.value = [response.data];
+    if ((response && response.data, Array.isArray(response.data))) {
+      users.value = response.data;
       console.log('users', users.value);
+      console.log(hasToken.value);
     }
   } catch (error) {
     console.error('Error fetching users data:', error);
