@@ -44,7 +44,7 @@ const sortedUserList = computed(() => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('/api/api/users/dashboard/admin/allUsers', {
+    const response = await fetch('/api/api/users/allUsers', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

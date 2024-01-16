@@ -12,7 +12,6 @@ export const getItem = (key: string) => {
   try {
     const item = localStorage.getItem(key);
     const parsedItem = item ? JSON.parse(item) : null;
-    console.log('Parsed data from localStorage:', parsedItem);
     return parsedItem;
   } catch (e) {
     console.error('Error in getting data from localStorage', e);

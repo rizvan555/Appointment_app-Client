@@ -111,6 +111,7 @@ onMounted(async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      
     });
 
     if (response && response.data && Array.isArray(response.data)) {

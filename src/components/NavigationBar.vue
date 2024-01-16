@@ -109,8 +109,6 @@ onMounted(async () => {
     );
     if ((response && response.data, Array.isArray(response.data))) {
       users.value = response.data;
-      console.log('users', users.value);
-      console.log(hasToken.value);
     }
   } catch (error) {
     console.error('Error fetching users data:', error);

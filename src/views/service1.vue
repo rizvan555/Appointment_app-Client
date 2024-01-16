@@ -23,13 +23,12 @@
 
 <script setup lang="ts">
 import { provide, ref } from 'vue';
+import DownArrow from '../assets/Icons/down-arrow.gif';
 import NameService from '../components/NameService.vue';
 import SelectDate from '../components/SelectDate.vue';
-import UserName from '../components/Username.vue';
-import DownArrow from '../assets/Icons/down-arrow.gif';
 
 const showSuccessMessage = ref(false);
-const userDetails = ref({ username: '', email: '' });
+const userDetails = ref({ username: '', email: '', phone: '' });
 
 provide('userDetails', userDetails);
 provide('showSuccessMessage', showSuccessMessage);

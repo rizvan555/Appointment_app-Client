@@ -6,7 +6,7 @@
     >
       <div
         class="w-[50vw] calendar rounded-lg"
-        v-if="userDetails.username !== ''"
+        v-if="userDetails && userDetails.username !== ''"
       >
         <VDatePicker
           v-model="date"
@@ -17,7 +17,7 @@
           :select-attribute="selectAttribute"
           :rules="rules"
           :disabled-dates="disabledDates"
-          :disabled="userDetails.username === ''"
+          :disabled="userDetails && userDetails.username === ''"
           :min-date="startDate"
           style="background-color: #f8f6f1"
         />
@@ -81,9 +81,7 @@
 
     <div class="rounded-lg w-[40vw] mx-auto bg-[#f8f6f1]">
       <div
-        v-if="
-          date && selectAttribute && !showSuccessMessage && userDetails.username
-        "
+        v-if="date && selectAttribute && !showSuccessMessage"
         v-for="timeSlot in timeSlots"
         :key="timeSlot.start"
       >
@@ -149,10 +147,10 @@
 
 <script setup lang="ts">
 import type { CustomerListProps, Errors, FormDateServices } from '@/types';
-import axios from 'axios';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import type { VDatePicker } from 'vuetify/components';
+import axios from '../api/axios';
 import calendar from '../assets/Icons/Calendar.vue';
 import MaterialSymbolsAlarm from '../assets/Icons/Clock.vue';
 import clock1 from '../assets/Icons/Clock1.vue';
@@ -177,7 +175,7 @@ const showSuccessMessage = inject('showSuccessMessage', ref(false));
 const errors = ref<Errors>({});
 const userDetails = inject(
   'userDetails',
-  ref({ username: '', email: '', phone: '' })
+  ref({ id: '', username: '', email: '', phone: '' })
 );
 const token = getItem('token');
 const serviceStore = useServiceStore();
@@ -380,7 +378,7 @@ onMounted(async () => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('/api/api/services/getAllServices', {
+    const response = await fetch('/api/api/services/allServices', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -423,13 +421,20 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       ? selectedTimeSlot.start
       : '';
 
+
     const response = await axios.post(
-      '/api/api/services/addService',
+      '/api/api/services/addServices',
       {
-        date: selectedDate.toISOString().split('T')[0],
-        email: userDetails.value.email,
-        username: userDetails.value.username,
-        phone: userDetails.value.phone,
+        date: date.value.toISOString().split('T')[0],
+        email: Array.isArray(userDetails.value)
+          ? userDetails.value[0]?.email
+          : '',
+        username: Array.isArray(userDetails.value)
+          ? userDetails.value[0]?.username
+          : '',
+        phone: Array.isArray(userDetails.value)
+          ? userDetails.value[0]?.phone
+          : '',
         selectedService: selectedServiceName.value,
         selectedTimeStart: formDataServices.value.selectedTimeStart,
       },

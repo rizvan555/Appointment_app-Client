@@ -10,7 +10,7 @@ const users = ref<User[]>([]);
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/api/users', {
+    const response = await axios.get('/api/api/users/allUsers', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
