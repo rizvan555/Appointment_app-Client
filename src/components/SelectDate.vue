@@ -63,9 +63,7 @@
               <p class="font-semibold w-[5vw]">Zeit:</p>
             </div>
             <p>
-              {{
-                userDetails.username ? formDataServices.selectedTimeStart : ''
-              }}
+              {{ formDataServices.selectedTimeStart }}
             </p>
           </div>
           <div class="flex justify-center items-center gap-3">
@@ -73,7 +71,7 @@
               <service class="w-4 h-4"></service>
               <p class="font-semibold w-[5vw]">Service:</p>
             </div>
-            <p>{{ userDetails.username ? selectedServiceName : '' }}</p>
+            <p>{{ selectedServiceName }}</p>
           </div>
         </div>
       </div>
@@ -421,9 +419,8 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       ? selectedTimeSlot.start
       : '';
 
-
     const response = await axios.post(
-      '/api/api/services/addServices',
+      '/api/api/services/addService',
       {
         date: date.value.toISOString().split('T')[0],
         email: Array.isArray(userDetails.value)
