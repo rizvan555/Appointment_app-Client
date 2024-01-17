@@ -138,19 +138,15 @@ const updatedInfo = ref<UpdatedInfo>({
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get(
-      '/api/api/users/dashboard/admin/allUsers',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get('/api/api/users/allUsers', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (response && response.data && Array.isArray(response.data)) {
       users.value = response.data;
-      user.value = response.data[0];
-      console.log('user', user.value);
+      console.log(users.value);
     }
   } catch (error) {
     console.error('Error fetching users data:', error);

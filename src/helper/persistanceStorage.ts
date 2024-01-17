@@ -2,7 +2,6 @@ export const setItem = (key: string, data: any) => {
   try {
     console.log('Setting data to localStorage:', data);
     localStorage.setItem(key, JSON.stringify(data));
-    console.log('Data successfully set to localStorage.');
   } catch (e) {
     console.error('Error in setting data to localStorage', e);
   }

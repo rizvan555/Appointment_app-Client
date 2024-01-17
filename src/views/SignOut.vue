@@ -35,10 +35,9 @@ const signOut = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   console.log('Signing out...');
-  location.reload();
 
   router.afterEach(() => {
-    location.reload();
+    window.location.reload();
   });
   router.push('/');
 };
