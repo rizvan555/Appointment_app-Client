@@ -114,14 +114,14 @@
 </template>
 
 <script setup lang="ts">
-import type { UpdatedInfo, User } from '@/types';
+import type { UpdatedInfo, User, UserNotService } from '@/types';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import PenIcon from '../assets/Icons/PenIcon.vue';
 import CloseIcon from '../assets/Icons/closeIcon.png';
 import { getItem } from '../helper/persistanceStorage';
 
-const users = ref<User[]>([]);
+const users = ref<UserNotService[]>([]);
 const user = ref<User>({
   id: '',
   username: '',
@@ -138,18 +138,27 @@ const updatedInfo = ref<UpdatedInfo>({
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/api/users/allUsers', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
 
-    if (response && response.data && Array.isArray(response.data)) {
-      users.value = response.data;
-      console.log(users.value);
+    if (token) {
+      const response = await axios.get('/api/api/users/authUser', {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      console.log(token);
+
+      if (response && response.data && Array.isArray(response.data)) {
+        console.log(response.data);
+
+        users.value = response.data;
+      }
+    } else {
+      console.log('User not logged in.');
     }
   } catch (error) {
-    console.error('Error fetching users data:', error);
+    console.error('Error retrieving user information:', error);
   }
 });
 

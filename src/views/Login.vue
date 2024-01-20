@@ -92,7 +92,6 @@ const isSubmitting = ref(false);
 // });
 
 const errors = ref<Errors>({});
-
 const clearError = (field: keyof Errors) => {
   errors.value[field] = '';
 };
@@ -115,7 +114,7 @@ const onSubmit = async (e: any) => {
       config
     );
 
-    const userToken = response.data.refreshToken;
+    const userToken = response.data.accessToken;
     setItem('token', userToken);
     console.log('Token set to localStorage:', getItem('token'));
 

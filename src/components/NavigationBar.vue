@@ -38,15 +38,17 @@
     </div>
 
     <div class="flex items-center gap-3 text-white ml-4">
-      <div class="flex items-center gap-1" v-if="hasToken">
+      <div class="flex items-center gap-1 mr-3" v-if="hasToken">
         <h1>Hi,</h1>
-        <Username />
+        <div class="">
+          <Username />
+        </div>
       </div>
       <div class="d-flex justify-space-around">
         <v-menu ref="menu">
           <template v-slot:activator="{ props }">
             <button
-              class="border rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-[#e5e5e5]"
+              class="border border-gray-800 rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-slate-200 pb-1"
               v-bind="props"
               v-if="hasToken"
             >
@@ -99,14 +101,11 @@ const hasToken = ref(token !== null);
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get(
-      '/api/api/users/dashboard/admin/allUsers',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get('/api/api/users/authUser', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if ((response && response.data, Array.isArray(response.data))) {
       users.value = response.data;
     }

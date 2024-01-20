@@ -32,7 +32,8 @@ export interface UserNotService {
   email: string;
   phone: string;
   password: string;
-  refreshToken: string;
+  accessToken: string;
+  token: string;
 }
 
 export interface Service {

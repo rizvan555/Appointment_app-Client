@@ -1,10 +1,8 @@
 <template>
-  <div
-    v-for="user in users"
-    :key="user.email"
-    class="text-center my-2 text-l font-semibold font-serif"
-  >
-    {{ user.username }}
+  <div class="text-center my-2 text-l font-semibold font-serif text-white">
+    <div v-for="user in users" :key="user.id">
+      {{ user.username }}
+    </div>
   </div>
 </template>
 
@@ -19,18 +17,24 @@ const users = ref<UserNotService[]>([]);
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/api/users/allUsers', {
+
+    const response = await axios.get('/api/api/users/authUser', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (response && response.data && Array.isArray(response.data)) {
-      users.value = response.data;
-      console.log(users.value);
+    if (response.data) {
+      const userData = response.data;
+      console.log(userData);
+      users.value = [userData];
+      console.log(users.value[0].username.split('')[0]);
     }
   } catch (error) {
-    console.error('Error fetching users data:', error);
+    console.error(
+      'An error occurred while retrieving existing user data:',
+      error
+    );
   }
 });
 </script>
