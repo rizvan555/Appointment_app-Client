@@ -1,7 +1,7 @@
 <template>
   <div class="mb-10">
     <div
-      class="flex flex-col pt-8 my-24 mx-auto text-center border w-[40vw] h-[42vh] contact"
+      class="flex flex-col pt-8 my-24 mx-auto text-center border w-[40vw] h-[42vh] contact bg-slate-50 rounded"
       :class="{
         'h-[46vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
       }"
@@ -212,7 +212,6 @@ const acceptInfo = async (e: any) => {
     console.error('Error updating user data:', error);
   }
 };
-
 
 const reloadButton = () => {
   updatedInfo.value.name = false;

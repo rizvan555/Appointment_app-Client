@@ -137,7 +137,7 @@
   background-image: url('../assets//images/barber-shop.jpg');
   background-size: cover;
   background-position: center;
-  height: 60vh;
+  height: 70vh;
   margin-top: -24px;
 }
 .home-bg::before {

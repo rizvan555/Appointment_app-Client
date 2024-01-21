@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-center justify-between gap-4 px-10 py-3 bg-indigo-950">
+  <div class="flex items-center justify-between gap-4 px-10 py-4 bg-indigo-700">
     <div class="flex items-center gap-[22vw]">
       <div class="flex items-center">
         <div class="flex flex-col items-center justify-center relative">
           <!-- <img :src="Barber" alt="razor" class="w-20 z-0" /> -->
           <div class="flex items-center z-20 font-serif pl-1">
-            <h1 class="text-xl font-semibold text-white">
+            <h1 class="text-xl font-semibold text-white text-[20px]">
               <a href="/">Barberamania</a>
             </h1>
           </div>
@@ -13,25 +13,29 @@
       </div>
 
       <div class="flex justify-center items-center gap-[34px]">
-        <button class="font-bold nav-buttons"><a href="/">Home</a></button>
-        <button class="font-bold nav-buttons">
+        <button class="font-bold nav-buttons text-[17px]">
+          <a href="/">Home</a>
+        </button>
+        <button class="font-bold nav-buttons text-[17px]">
           <a href="/about">Über uns</a>
         </button>
 
         <div class="flex" v-for="nav in allNavs.navs">
           <a
             href="termin"
-            class="px-2 py-1 font-bold active:scale-95 transition-all nav-buttons"
+            class="px-2 py-1 font-bold active:scale-95 transition-all nav-buttons text-[17px]"
           >
             Termin
           </a>
         </div>
 
-        <button class="font-bold nav-buttons"><a href="team">Team</a></button>
-        <button class="font-bold nav-buttons">
+        <button class="font-bold nav-buttons text-[17px]">
+          <a href="team">Team</a>
+        </button>
+        <button class="font-bold nav-buttons text-[17px]">
           <a href="galerie">Galerie</a>
         </button>
-        <button class="font-bold nav-buttons">
+        <button class="font-bold nav-buttons text-[17px]">
           <a href="kontakt">Kontakt</a>
         </button>
       </div>
@@ -48,7 +52,7 @@
         <v-menu ref="menu">
           <template v-slot:activator="{ props }">
             <button
-              class="border border-gray-800 rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-slate-200 pb-1"
+              class="border border-gray-800 rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-slate-200"
               v-bind="props"
               v-if="hasToken"
             >

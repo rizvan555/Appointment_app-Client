@@ -2,7 +2,7 @@
   <div
     v-for="user in users"
     :key="user.id"
-    class="flex justify-center items-center text-center text-black font-semibold font-serif text-3xl"
+    class="flex justify-center items-center text-center text-black font-semibold font-serif text-2xl"
   >
     {{ user.username.split('')[0] }}
   </div>
