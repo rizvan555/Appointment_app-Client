@@ -2,7 +2,9 @@
   <div class="mb-10">
     <div
       class="flex flex-col pt-8 my-24 mx-auto text-center border w-[40vw] h-[42vh] contact"
-      :class="{'h-[46vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email}"
+      :class="{
+        'h-[46vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
+      }"
     >
       <div class="mb-2">
         <h1 class="font-bold text-2xl mb-10">Mein Konto</h1>
@@ -107,7 +109,7 @@
           type="submit"
           v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
           class="border px-4 mt-6 ml-6 rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
-          @click="acceptInfo"
+          @click="(e) => acceptInfo(e)"
         >
           Akzeptieren
         </button>
@@ -150,9 +152,7 @@ onMounted(async () => {
 
     if (response.data) {
       const userData = response.data;
-      console.log(userData);
       users.value = [userData];
-      console.log(users.value[0].username.split('')[0]);
     }
   } catch (error) {
     console.error(
@@ -183,44 +183,36 @@ const acceptInfo = async (e: any) => {
       return;
     }
 
-    let updatedUsername = '';
-    let updatePhone = '';
-    let updatedEmail = '';
+    let updatedFields: Record<string, string> = {};
 
     const nameInput = document.querySelector('input[name="name"]');
-    if (nameInput) {
-      updatedUsername = (nameInput as HTMLInputElement).value;
-      console.log(updatedUsername);
+    if (nameInput && updatedInfo.value.name) {
+      updatedFields['username'] = (nameInput as HTMLInputElement).value;
     }
 
     const phoneInput = document.querySelector('input[name="phone"]');
-    if (phoneInput) {
-      updatePhone = (phoneInput as HTMLInputElement).value;
-      console.log(updatePhone);
+    if (phoneInput && updatedInfo.value.phone) {
+      updatedFields['phone'] = (phoneInput as HTMLInputElement).value;
     }
 
     const emailInput = document.querySelector('input[name="email"]');
-    if (emailInput) {
-      updatedEmail = (emailInput as HTMLInputElement).value;
-      console.log(updatedEmail);
+    if (emailInput && updatedInfo.value.email) {
+      updatedFields['email'] = (emailInput as HTMLInputElement).value;
     }
 
     const response = await axios.put(
-      `/api/users/${userId}`,
-      {
-        username: updatedUsername,
-        phone: updatePhone,
-        email: updatedEmail,
-      },
+      `/api/api/users/update/${userId}`,
+      updatedFields,
       config
     );
-    window.location.reload();
+    console.log(response.data);
 
-    console.log('Update response:', response.data);
+    window.location.reload();
   } catch (error) {
     console.error('Error updating user data:', error);
   }
 };
+
 
 const reloadButton = () => {
   updatedInfo.value.name = false;
