@@ -1,115 +1,118 @@
 <template>
-  <div
-    class="flex flex-col pt-2 my-28 mx-auto text-center border w-[40vw] h-[42vh] contact"
-  >
-    <div class="my-2">
-      <h1 class="font-bold text-2xl mb-6">Mein Konto</h1>
-    </div>
-
-    <ul
-      v-for="user in users"
-      class="flex flex-col justify-center items-start text-center mx-auto leading-8 gap-2"
+  <div class="mb-10">
+    <div
+      class="flex flex-col pt-8 my-24 mx-auto text-center border w-[40vw] h-[42vh] contact"
+      :class="{'h-[46vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email}"
     >
-      <li class="flex gap-2 items-start justify-start w-[35vw]">
-        <p class="font-bold w-[8vw]">Name:</p>
-        <div class="flex items-center justify-between w-[25vw] gap-10">
-          <p v-if="!updatedInfo.name">{{ user.username }}</p>
-          <form v-if="updatedInfo.name" class="input-border">
-            <input
-              type="text"
-              placeholder="Name"
-              class="pl-3 w-[20vw] outline-none"
-              name="name"
-            />
-          </form>
-          <button
-            type="button"
-            @click="() => toggleUpdatedInfo('name')"
-            v-if="!updatedInfo.name"
-          >
-            <PenIcon />
-          </button>
-        </div>
+      <div class="mb-2">
+        <h1 class="font-bold text-2xl mb-10">Mein Konto</h1>
+      </div>
 
-        <button
-          type="button"
-          v-if="updatedInfo.name"
-          @click="reloadButton"
-          class="flex justify-center items-center w-8 h-8"
-        >
-          <img :src="CloseIcon" alt="closeIcon" />
-        </button>
-      </li>
-
-      <li class="flex gap-2 items-start justify-start w-[35vw]">
-        <p class="font-bold w-[8vw]">Phone:</p>
-        <div class="flex items-center justify-between w-[25vw] gap-10">
-          <p v-if="!updatedInfo.phone">{{ user.phone }}</p>
-          <form v-if="updatedInfo.phone" class="input-border">
-            <input
-              type="number"
-              placeholder="Phone"
-              class="pl-3 w-[20vw] outline-none"
-              name="phone"
-            />
-          </form>
-          <button
-            type="button"
-            @click="() => toggleUpdatedInfo('phone')"
-            v-if="!updatedInfo.phone"
-          >
-            <PenIcon />
-          </button>
-        </div>
-        <button
-          type="button"
-          v-if="updatedInfo.phone"
-          @click="reloadButton"
-          class="flex justify-center items-center w-8 h-8"
-        >
-          <img :src="CloseIcon" alt="closeIcon" />
-        </button>
-      </li>
-
-      <li class="flex gap-2 items-start justify-start w-[35vw]">
-        <p class="font-bold w-[8vw]">Email:</p>
-        <div class="flex items-center justify-between w-[25vw] gap-10">
-          <p v-if="!updatedInfo.email">{{ user.email }}</p>
-          <form v-if="updatedInfo.email" class="input-border">
-            <input
-              type="text"
-              placeholder="E-Mail"
-              name="email"
-              class="pl-3 w-[20vw] outline-none"
-            />
-          </form>
-          <button
-            type="button"
-            @click="() => toggleUpdatedInfo('email')"
-            v-if="!updatedInfo.email"
-          >
-            <PenIcon />
-          </button>
-        </div>
-
-        <button
-          type="button"
-          v-if="updatedInfo.email"
-          @click="reloadButton"
-          class="flex justify-center items-center w-8 h-8"
-        >
-          <img :src="CloseIcon" alt="closeIcon" />
-        </button>
-      </li>
-      <button
-        type="submit"
-        v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
-        class="border px-4 mt-6 rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
-        @click="acceptInfo"
+      <ul
+        v-for="user in users"
+        class="flex flex-col justify-center items-start text-center mx-auto leading-8 gap-2"
       >
-        Akzeptieren
-      </button>
-    </ul>
+        <li class="flex gap-2 items-start justify-start w-[35vw]">
+          <p class="font-bold w-[8vw]">Name:</p>
+          <div class="flex items-center justify-between w-[25vw] gap-10">
+            <p v-if="!updatedInfo.name">{{ user.username }}</p>
+            <form v-if="updatedInfo.name" class="input-border">
+              <input
+                type="text"
+                placeholder="Name"
+                class="pl-3 w-[20vw] outline-none"
+                name="name"
+              />
+            </form>
+            <button
+              type="button"
+              @click="() => toggleUpdatedInfo('name')"
+              v-if="!updatedInfo.name"
+            >
+              <PenIcon />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            v-if="updatedInfo.name"
+            @click="reloadButton"
+            class="flex justify-center items-center w-8 h-8"
+          >
+            <img :src="CloseIcon" alt="closeIcon" />
+          </button>
+        </li>
+
+        <li class="flex gap-2 items-start justify-start w-[35vw]">
+          <p class="font-bold w-[8vw]">Phone:</p>
+          <div class="flex items-center justify-between w-[25vw] gap-10">
+            <p v-if="!updatedInfo.phone">{{ user.phone }}</p>
+            <form v-if="updatedInfo.phone" class="input-border">
+              <input
+                type="number"
+                placeholder="Phone"
+                class="pl-3 w-[20vw] outline-none"
+                name="phone"
+              />
+            </form>
+            <button
+              type="button"
+              @click="() => toggleUpdatedInfo('phone')"
+              v-if="!updatedInfo.phone"
+            >
+              <PenIcon />
+            </button>
+          </div>
+          <button
+            type="button"
+            v-if="updatedInfo.phone"
+            @click="reloadButton"
+            class="flex justify-center items-center w-8 h-8"
+          >
+            <img :src="CloseIcon" alt="closeIcon" />
+          </button>
+        </li>
+
+        <li class="flex gap-2 items-start justify-start w-[35vw]">
+          <p class="font-bold w-[8vw]">Email:</p>
+          <div class="flex items-center justify-between w-[25vw] gap-10">
+            <p v-if="!updatedInfo.email">{{ user.email }}</p>
+            <form v-if="updatedInfo.email" class="input-border">
+              <input
+                type="text"
+                placeholder="E-Mail"
+                name="email"
+                class="pl-3 w-[20vw] outline-none"
+              />
+            </form>
+            <button
+              type="button"
+              @click="() => toggleUpdatedInfo('email')"
+              v-if="!updatedInfo.email"
+            >
+              <PenIcon />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            v-if="updatedInfo.email"
+            @click="reloadButton"
+            class="flex justify-center items-center w-8 h-8"
+          >
+            <img :src="CloseIcon" alt="closeIcon" />
+          </button>
+        </li>
+        <button
+          type="submit"
+          v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
+          class="border px-4 mt-6 ml-6 rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
+          @click="acceptInfo"
+        >
+          Akzeptieren
+        </button>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -139,26 +142,23 @@ onMounted(async () => {
   try {
     const token = getItem('token');
 
-    if (token) {
-      const response = await axios.get('/api/api/users/authUser', {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      console.log(token);
+    const response = await axios.get('/api/api/users/authUser', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      if (response && response.data && Array.isArray(response.data)) {
-        console.log(response.data);
-
-        users.value = response.data;
-      }
-    } else {
-      console.log('User not logged in.');
+    if (response.data) {
+      const userData = response.data;
+      console.log(userData);
+      users.value = [userData];
+      console.log(users.value[0].username.split('')[0]);
     }
   } catch (error) {
-    console.error('Error retrieving user information:', error);
+    console.error(
+      'An error occurred while retrieving existing user data:',
+      error
+    );
   }
 });
 
