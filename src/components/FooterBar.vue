@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-center items-start gap-28 bg-indigo-700 text-white py-4"
+    class="flex justify-center items-start gap-36 bg-indigo-700 text-white py-4"
   >
     <ul class="flex flex-col gap-2">
       <li class="text-2xl font-semibold my-4"><a href="#">Kontakt</a></li>

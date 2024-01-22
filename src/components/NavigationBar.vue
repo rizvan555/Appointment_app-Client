@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <div class="flex flex-col items-center justify-center relative">
           <!-- <img :src="Barber" alt="razor" class="w-20 z-0" /> -->
-          <div class="flex items-center z-20 font-serif pl-1">
+          <div class="flex items-center z-20 font-serif pl-5">
             <h1 class="text-xl font-semibold text-white text-[20px]">
               <a href="/">Barberamania</a>
             </h1>
@@ -61,7 +61,7 @@
 
             <button
               v-if="!hasToken"
-              class="border border-white z-30 active:scale-95 transition-all"
+              class="z-30 active:scale-95 transition-all"
               v-bind="props"
             >
               Anmelden

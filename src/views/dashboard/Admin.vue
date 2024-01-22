@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-1 mb-6">
+  <div class="mt-1 mb-6 h-[70vh]">
     <v-layout>
       <v-navigation-drawer
         v-model="drawer"
@@ -8,12 +8,16 @@
         @click="rail = false"
       >
         <v-list-item
-          v-for="user in allUsers"
+          v-for="user in users"
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
           nav
           @click.stop="rail = !rail"
+          class="py-3"
         >
-          <b>User:</b> {{ user.username }}
+          <div v-if="user.username === 'Rizvan'">
+            <b>ADMIN:</b> {{ user.username }}
+          </div>
+          <div v-else><b>HR:</b> {{ user.username }}</div>
           <template v-slot:append>
             <v-btn
               variant="text"
@@ -51,7 +55,7 @@
         <div
           v-if="value === 'home'"
           class="w-[90vw] ml-24 px-2 border"
-          :class="{ 'ml-[20vw]': !rail }"
+          :class="{ 'w-[76vw] ml-[22vw]': !rail }"
         >
           <customer-list></customer-list>
         </div>
@@ -63,21 +67,13 @@
         >
           <profile></profile>
         </div>
-
-        <div
-          v-if="value === 'users'"
-          class="h-[100vh] w-[70vw] border ml-60 p-4"
-          :class="{ 'w-[5vw] ml-[25vw]': !rail }"
-        >
-          Benutzer
-        </div>
       </div>
     </v-layout>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { User } from '@/types';
+import type { User, UserNotService } from '@/types';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import {
@@ -96,29 +92,42 @@ import Profile from '../../views/Profile.vue';
 const drawer = ref(true);
 const rail = ref(true);
 const allUsers = ref<User[]>([]);
+const users = ref<UserNotService[]>([]);
 const value = ref('home');
 const usersStore = useUsersStore();
 console.log(usersStore);
 
 const updateValue = (newValue: any) => {
+  const currentUser = users.value[0];
+  if ((currentUser as any).role !== 'ADMIN' && newValue === 'users') {
+    console.error(
+      'Unauthorized access: Only admins can access the "users" page'
+    );
+    return;
+  }
+
   value.value = newValue;
 };
 
 onMounted(async () => {
   try {
     const token = getItem('token');
-    const response = await axios.get('/api/api/users/allUsers', {
+
+    const response = await axios.get('/api/api/users/authUser', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      
     });
 
-    if (response && response.data && Array.isArray(response.data)) {
-      allUsers.value = response.data;
+    if (response.data) {
+      const userData = response.data;
+      users.value = [userData];
     }
   } catch (error) {
-    console.error('Error fetching users data:', error);
+    console.error(
+      'An error occurred while retrieving existing user data:',
+      error
+    );
   }
 });
 </script>

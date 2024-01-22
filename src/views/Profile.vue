@@ -1,23 +1,24 @@
 <template>
   <div class="mb-10">
     <div
-      class="flex flex-col pt-8 my-24 mx-auto text-center border w-[40vw] h-[42vh] contact bg-slate-50 rounded"
+      class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[42vh] contact bg-slate-50 rounded"
       :class="{
-        'h-[46vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
+        'h-[50vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
       }"
     >
-      <div class="mb-2">
-        <h1 class="font-bold text-2xl mb-10">Mein Konto</h1>
+      <div class="bg-indigo-50 rounded">
+        <h1 class="font-bold text-3xl my-4">Mein Konto</h1>
       </div>
+      <hr />
 
       <ul
         v-for="user in users"
-        class="flex flex-col justify-center items-start text-center mx-auto leading-8 gap-2"
+        class="flex flex-col justify-center items-start text-center mx-auto leading-8 gap-4 mt-8"
       >
         <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw]">Name:</p>
+          <p class="font-bold w-[8vw] text-xl">Name:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.name">{{ user.username }}</p>
+            <p v-if="!updatedInfo.name" class="text-xl">{{ user.username }}</p>
             <form v-if="updatedInfo.name" class="input-border">
               <input
                 type="text"
@@ -39,16 +40,16 @@
             type="button"
             v-if="updatedInfo.name"
             @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8"
+            class="flex justify-center items-center w-8 h-8 mr-3"
           >
             <img :src="CloseIcon" alt="closeIcon" />
           </button>
         </li>
 
         <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw]">Phone:</p>
+          <p class="font-bold w-[8vw] text-xl">Phone:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.phone">{{ user.phone }}</p>
+            <p v-if="!updatedInfo.phone" class="text-xl">{{ user.phone }}</p>
             <form v-if="updatedInfo.phone" class="input-border">
               <input
                 type="number"
@@ -69,16 +70,16 @@
             type="button"
             v-if="updatedInfo.phone"
             @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8"
+            class="flex justify-center items-center w-8 h-8 mr-3"
           >
             <img :src="CloseIcon" alt="closeIcon" />
           </button>
         </li>
 
         <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw]">Email:</p>
+          <p class="font-bold w-[8vw] text-xl">Email:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.email">{{ user.email }}</p>
+            <p v-if="!updatedInfo.email" class="text-xl">{{ user.email }}</p>
             <form v-if="updatedInfo.email" class="input-border">
               <input
                 type="text"
@@ -100,7 +101,7 @@
             type="button"
             v-if="updatedInfo.email"
             @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8"
+            class="flex justify-center items-center w-8 h-8 mr-3"
           >
             <img :src="CloseIcon" alt="closeIcon" />
           </button>
@@ -108,7 +109,7 @@
         <button
           type="submit"
           v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
-          class="border px-4 mt-6 ml-6 rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
+          class="border w-[100%] px-6 mt-4 mx-auto rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
           @click="(e) => acceptInfo(e)"
         >
           Akzeptieren
