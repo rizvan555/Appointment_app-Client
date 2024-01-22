@@ -98,14 +98,6 @@ const usersStore = useUsersStore();
 console.log(usersStore);
 
 const updateValue = (newValue: any) => {
-  const currentUser = users.value[0];
-  if ((currentUser as any).role !== 'ADMIN' && newValue === 'users') {
-    console.error(
-      'Unauthorized access: Only admins can access the "users" page'
-    );
-    return;
-  }
-
   value.value = newValue;
 };
 
