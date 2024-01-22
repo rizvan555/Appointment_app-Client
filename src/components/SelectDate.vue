@@ -2,12 +2,9 @@
   <div class="py-2">
     <div
       v-if="!showSuccessMessage"
-      class="flex justify-center items-center container my-[1vh] gap-5"
+      class="flex justify-center items-center container my-[2vh] gap-5"
     >
-      <div
-        class="w-[50vw] calendar rounded-lg"
-        v-if="userDetails && userDetails.username !== ''"
-      >
+      <div class="w-[50vw] calendar rounded-lg" v-if="hasToken">
         <VDatePicker
           v-model="date"
           mode="date"
@@ -24,8 +21,8 @@
       </div>
     </div>
     <div
-      class="flex flex-col justify-center items-center h-[50vh]"
-      v-if="userDetails.username === ''"
+      class="flex flex-col justify-center items-center h-[40vh]"
+      v-if="!hasToken"
     >
       <img :src="AttentionIcon" alt="AttentionIcon" class="w-20 mb-4" />
       <h1 class="text-red-500 text-center text-xl mb-4 font-bold">
@@ -77,7 +74,7 @@
       </div>
     </div>
 
-    <div class="rounded-lg w-[40vw] mx-auto bg-[#f8f6f1]">
+    <div class="rounded-lg w-[40vw] mx-auto bg-[#f8f6f1]" v-if="hasToken">
       <div
         v-if="date && selectAttribute && !showSuccessMessage"
         v-for="timeSlot in timeSlots"
@@ -85,7 +82,7 @@
       >
         <div class="flex justify-between items-center">
           <div
-            class="flex items-center gap-2 py-6 px-10"
+            class="flex items-center gap-3 py-6 px-10"
             :class="{
               'text-gray-400':
                 (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||
@@ -176,6 +173,7 @@ const userDetails = inject(
   ref({ id: '', username: '', email: '', phone: '' })
 );
 const token = getItem('token');
+const hasToken = computed(() => !!token);
 const serviceStore = useServiceStore();
 const userLists = ref<CustomerListProps[]>([]);
 const selectAttribute = ref({});
