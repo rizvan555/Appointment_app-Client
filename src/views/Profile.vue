@@ -128,13 +128,6 @@ import CloseIcon from '../assets/Icons/closeIcon.png';
 import { getItem } from '../helper/persistanceStorage';
 
 const users = ref<UserNotService[]>([]);
-const user = ref<User>({
-  id: '',
-  username: '',
-  email: '',
-  phone: '',
-  services: [],
-});
 const updatedInfo = ref<UpdatedInfo>({
   name: false,
   phone: false,

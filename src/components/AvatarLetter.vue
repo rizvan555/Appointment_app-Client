@@ -30,7 +30,6 @@ onMounted(async () => {
       const userData = response.data;
       console.log(userData);
       users.value = [userData];
-      console.log(users.value[0].username.split('')[0]);
     }
   } catch (error) {
     console.error(

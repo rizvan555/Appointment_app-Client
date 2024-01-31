@@ -141,7 +141,12 @@
 </template>
 
 <script setup lang="ts">
-import type { CustomerListProps, Errors, FormDateServices } from '@/types';
+import type {
+  CustomerListProps,
+  Errors,
+  FormDateServices,
+  UserNotService,
+} from '@/types';
 import { computed, inject, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import type { VDatePicker } from 'vuetify/components';
@@ -154,7 +159,6 @@ import OkIcon from '../assets/Icons/OkIcon.vue';
 import service from '../assets/Icons/Service.vue';
 import AttentionIcon from '../assets/Icons/icons8-attention.gif';
 import { getItem, setItem } from '../helper/persistanceStorage';
-import { useServiceStore } from '../stores/useServiceStore';
 
 type BlockedTimes = string[];
 const formDataServices = ref<FormDateServices>({
@@ -170,11 +174,12 @@ const showSuccessMessage = inject('showSuccessMessage', ref(false));
 const errors = ref<Errors>({});
 const userDetails = inject(
   'userDetails',
-  ref({ id: '', username: '', email: '', phone: '' })
+  ref({ username: '', email: '', phone: '' })
 );
+
+const users = ref<UserNotService[]>([]);
 const token = getItem('token');
 const hasToken = computed(() => !!token);
-const serviceStore = useServiceStore();
 const userLists = ref<CustomerListProps[]>([]);
 const selectAttribute = ref({});
 const position = ref(true);
@@ -389,6 +394,28 @@ onMounted(async () => {
     console.error('Error fetching user list:', error);
   }
 });
+onMounted(async () => {
+  try {
+    const token = getItem('token');
+
+    const response = await axios.get('/api/api/users/authUser', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data) {
+      const userData = response.data;
+      users.value = [userData];
+      console.log('users', users.value);
+    }
+  } catch (error) {
+    console.error(
+      'An error occurred while retrieving existing user data:',
+      error
+    );
+  }
+});
 
 const handleSubmit = async (e: any, timeSlotId: number) => {
   e.preventDefault();
@@ -400,6 +427,11 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       },
       withCredentials: true,
     };
+
+    console.log(users.value[0].id);
+
+    console.log('date', date.value.toISOString().split('T')[0]);
+
     isSubmitting.value = true;
     position.value = true;
 
@@ -418,29 +450,22 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       : '';
 
     const response = await axios.post(
-      '/api/api/services/addService',
+      '/api/api/services/addServices',
       {
         date: date.value.toISOString().split('T')[0],
-        email: Array.isArray(userDetails.value)
-          ? userDetails.value[0]?.email
-          : '',
-        username: Array.isArray(userDetails.value)
-          ? userDetails.value[0]?.username
-          : '',
-        phone: Array.isArray(userDetails.value)
-          ? userDetails.value[0]?.phone
-          : '',
+        username: users.value[0].username,
+        email: users.value[0].email,
+        phone: users.value[0].phone,
         selectedService: selectedServiceName.value,
         selectedTimeStart: formDataServices.value.selectedTimeStart,
       },
       config
     );
 
-    if (response.data.token) {
-      setItem('token', response.data.token);
+    if (response.data.accessToken) {
+      setItem('token', response.data.accessToken);
     }
     showSuccessMessage.value = true;
-    console.log('Success:', response.data);
   } catch (error: any) {
     console.log('Server Error:', error.response.data);
   } finally {
