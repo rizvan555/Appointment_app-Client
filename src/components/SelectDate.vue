@@ -407,7 +407,6 @@ onMounted(async () => {
     if (response.data) {
       const userData = response.data;
       users.value = [userData];
-      console.log('users', users.value);
     }
   } catch (error) {
     console.error(
@@ -429,7 +428,6 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
     };
 
     console.log(users.value[0].id);
-
     console.log('date', date.value.toISOString().split('T')[0]);
 
     isSubmitting.value = true;

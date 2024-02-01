@@ -57,7 +57,7 @@
 
             <button
               :disabled="isSubmitting"
-              class="bg-indigo-950 text-white rounded py-3 px-2 font-semibold hover:bg-slate-600 active:scale-95 transition-all login-button"
+              class="bg-indigo-500 text-white rounded py-3 px-2 font-semibold hover:bg-indigo-700 active:scale-95 transition-all login-button"
               id="login-button"
               type="submit"
             >
