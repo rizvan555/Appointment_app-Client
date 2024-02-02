@@ -1,24 +1,26 @@
 <template>
   <div class="mb-10">
     <div
-      class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[42vh] contact bg-slate-50 rounded"
+      class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[44vh] contact bg-slate-50 rounded"
       :class="{
-        'h-[50vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
+        'h-[54vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
       }"
     >
       <div class="bg-indigo-50 rounded">
-        <h1 class="font-bold text-3xl my-4">Mein Konto</h1>
+        <h1 class="font-bold text-3xl text-indigo-600 my-4">Mein Konto</h1>
       </div>
       <hr />
 
       <ul
         v-for="user in users"
-        class="flex flex-col justify-center items-start text-center mx-auto leading-8 gap-4 mt-8"
+        class="flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
       >
         <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw] text-xl">Name:</p>
+          <p class="font-bold w-[8vw] text-[20px]">Name:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.name" class="text-xl">{{ user.username }}</p>
+            <p v-if="!updatedInfo.name" class="text-[18px]">
+              {{ user.username }}
+            </p>
             <form v-if="updatedInfo.name" class="input-border">
               <input
                 type="text"
@@ -47,9 +49,11 @@
         </li>
 
         <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw] text-xl">Phone:</p>
+          <p class="font-bold w-[8vw] text-[20px]">Phone:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.phone" class="text-xl">{{ user.phone }}</p>
+            <p v-if="!updatedInfo.phone" class="text-[18px]">
+              {{ user.phone }}
+            </p>
             <form v-if="updatedInfo.phone" class="input-border">
               <input
                 type="number"
@@ -76,16 +80,20 @@
           </button>
         </li>
 
-        <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw] text-xl">Email:</p>
+        <li
+          class="flex gap-2 items-start justify-start w-[35vw] pb-8 border-bottom"
+        >
+          <p class="font-bold w-[8vw] text-[20px]">Email:</p>
           <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.email" class="text-xl">{{ user.email }}</p>
+            <p v-if="!updatedInfo.email" class="text-[18px]">
+              {{ user.email }}
+            </p>
             <form v-if="updatedInfo.email" class="input-border">
               <input
                 type="text"
                 placeholder="E-Mail"
-                name="email"
                 class="pl-3 w-[20vw] outline-none"
+                name="email"
               />
             </form>
             <button
@@ -106,10 +114,25 @@
             <img :src="CloseIcon" alt="closeIcon" />
           </button>
         </li>
+
+        <li class="flex flex-col items-start justify-start text-start gap-2">
+          <div class="flex items-start justify-start">
+            <p class="font-bold w-[6vw] text-l">Termin:</p>
+            <p class="text-l text-start">
+              {{ services[0].date }} / {{ services[0].selectedTimeStart }} Uhr
+            </p>
+          </div>
+          <div class="flex items-start justify-start">
+            <p class="font-bold w-[6vw] text-l">Service:</p>
+            <p class="text-l">
+              {{ services[0].selectedService }}
+            </p>
+          </div>
+        </li>
         <button
           type="submit"
           v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
-          class="border w-[100%] px-6 mt-4 mx-auto rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
+          class="border w-[100%] px-6 py-2 mt-4 mx-auto rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
           @click="(e) => acceptInfo(e)"
         >
           Akzeptieren
@@ -120,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import type { UpdatedInfo, User, UserNotService } from '@/types';
+import type { Services, UpdatedInfo, UserNotService } from '@/types';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import PenIcon from '../assets/Icons/PenIcon.vue';
@@ -128,6 +151,7 @@ import CloseIcon from '../assets/Icons/closeIcon.png';
 import { getItem } from '../helper/persistanceStorage';
 
 const users = ref<UserNotService[]>([]);
+const services = ref<Services[]>([]);
 const updatedInfo = ref<UpdatedInfo>({
   name: false,
   phone: false,
@@ -150,7 +174,34 @@ onMounted(async () => {
     }
   } catch (error) {
     console.error(
-      'An error occurred while retrieving existing user data:',
+      'An error occurred while retrieving the current user data:',
+      error
+    );
+  }
+
+  try {
+    const token = getItem('token');
+    const serviceId = users.value[0]?.id;
+    console.log(serviceId);
+
+    const response = await axios.get(
+      `/api/api/services/allServices/${serviceId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data) {
+      const serviceData = response.data;
+      console.log(serviceData.selectedService);
+
+      services.value = [serviceData];
+    }
+  } catch (error) {
+    console.error(
+      'Mevcut kullanıcı verileri alınırken bir hata oluştu:',
       error
     );
   }
@@ -199,8 +250,6 @@ const acceptInfo = async (e: any) => {
       updatedFields,
       config
     );
-    console.log(response.data);
-
     window.location.reload();
   } catch (error) {
     console.error('Error updating user data:', error);

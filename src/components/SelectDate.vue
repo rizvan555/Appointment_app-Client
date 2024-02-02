@@ -450,6 +450,7 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
     const response = await axios.post(
       '/api/api/services/addServices',
       {
+        id: users.value[0].id,
         date: date.value.toISOString().split('T')[0],
         username: users.value[0].username,
         email: users.value[0].email,

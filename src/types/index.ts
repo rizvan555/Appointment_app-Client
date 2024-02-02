@@ -35,6 +35,15 @@ export interface UserNotService {
   accessToken: string;
   token: string;
 }
+export interface Services {
+  id: string;
+  date: string;
+  username: string;
+  email: string;
+  phone: string;
+  selectedService: string;
+  selectedTimeStart: string;
+}
 
 export interface Service {
   id: number;

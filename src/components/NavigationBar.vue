@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="flex justify-center items-center gap-[34px]">
+      <div class="flex justify-center items-center gap-[30px]">
         <button class="font-bold nav-buttons text-[17px]">
           <a href="/">Home</a>
         </button>
@@ -42,8 +42,8 @@
     </div>
 
     <div class="flex items-center gap-3 text-white ml-4">
-      <div class="flex items-center gap-1 mr-3" v-if="hasToken">
-        <h1>Hi,</h1>
+      <div class="flex items-center gap-1 mr-2" v-if="hasToken">
+        <h1>Hallo,</h1>
         <div class="">
           <Username />
         </div>
