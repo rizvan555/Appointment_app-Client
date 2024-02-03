@@ -31,7 +31,7 @@
     </div>
 
     <div
-      class="flex justify-center items-center w-[50vw] mx-auto my-[10vh]"
+      class="flex justify-center items-center w-[50vw] mx-auto my-[13vh]"
       v-if="showSuccessMessage"
     >
       <div class="flex flex-col justify-center items-start py-4">

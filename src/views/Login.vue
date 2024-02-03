@@ -33,7 +33,7 @@
                 name="username"
                 method="post"
               />
-              <div v-if="errors.email" class="text-red-500">
+              <div v-if="errors.username" class="text-red-500">
                 {{ errors.username }}
               </div>
             </fieldset>
@@ -73,6 +73,7 @@
 <script setup lang="ts">
 import type { Errors, FormDataLogin } from '@/types';
 import { ref } from 'vue';
+import * as Yup from 'yup';
 import axios from '../api/axios';
 import { getItem, setItem } from '../helper/persistanceStorage';
 import router from '../router/index';
@@ -84,12 +85,14 @@ const formData = ref<FormDataLogin>({
 
 const isSubmitting = ref(false);
 
-// const schema = Yup.object().shape({
-//   email: Yup.string().email('Invalid email').required('Email is required'),
-//   password: Yup.string()
-//     .min(6, 'Password must be at least 6 characters')
-//     .required('Password is required'),
-// });
+const schema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, 'Username must be at least 3 characters')
+    .required('Username is required'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
+});
 
 const errors = ref<Errors>({});
 const clearError = (field: keyof Errors) => {
@@ -100,7 +103,7 @@ const onSubmit = async (e: any) => {
   e.preventDefault();
   try {
     isSubmitting.value = true;
-    // await schema.validate(formData.value, { abortEarly: false });
+    await schema.validate(formData.value, { abortEarly: false });
 
     const config = {
       headers: {
@@ -118,6 +121,10 @@ const onSubmit = async (e: any) => {
     setItem('token', userToken);
     console.log('Token set to localStorage:', getItem('token'));
 
+    router.afterEach(() => {
+      window.location.reload();
+    });
+    router.push('/');
     if (response.data.redirect) {
       router.push(response.data.redirect);
     } else {
