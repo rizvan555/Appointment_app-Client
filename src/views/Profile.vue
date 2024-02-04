@@ -8,8 +8,8 @@
             updatedInfo.name || updatedInfo.phone || updatedInfo.email,
         }"
       >
-        <div class="bg-indigo-50 rounded">
-          <h1 class="font-bold text-3xl text-indigo-600 my-4">Mein Konto</h1>
+        <div class="bg-slate-900 rounded-t">
+          <h1 class="font-bold text-3xl bg-slate-900 text-indigo-50 my-4">Mein Konto</h1>
         </div>
         <hr />
 
