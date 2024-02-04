@@ -1,151 +1,157 @@
 <template>
-  <div class="mb-10">
-    <div
-      class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[44vh] contact bg-slate-50 rounded"
-      :class="{
-        'h-[54vh]': updatedInfo.name || updatedInfo.phone || updatedInfo.email,
-      }"
-    >
-      <div class="bg-indigo-50 rounded">
-        <h1 class="font-bold text-3xl text-indigo-600 my-4">Mein Konto</h1>
-      </div>
-      <hr />
-
-      <ul
-        v-for="user in users"
-        class="flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
+  <!-- <div v-if="isAuthenticated"> -->
+    <div class="mb-10">
+      <div
+        class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[44vh] contact bg-slate-50 rounded"
+        :class="{
+          'h-[54vh]':
+            updatedInfo.name || updatedInfo.phone || updatedInfo.email,
+        }"
       >
-        <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw] text-[20px]">Name:</p>
-          <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.name" class="text-[18px]">
-              {{ user.username }}
-            </p>
-            <form v-if="updatedInfo.name" class="input-border">
-              <input
-                type="text"
-                placeholder="Name"
-                class="pl-3 w-[20vw] outline-none"
-                name="name"
-              />
-            </form>
-            <button
-              type="button"
-              @click="() => toggleUpdatedInfo('name')"
-              v-if="!updatedInfo.name"
-            >
-              <PenIcon />
-            </button>
-          </div>
+        <div class="bg-indigo-50 rounded">
+          <h1 class="font-bold text-3xl text-indigo-600 my-4">Mein Konto</h1>
+        </div>
+        <hr />
 
-          <button
-            type="button"
-            v-if="updatedInfo.name"
-            @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8 mr-3"
-          >
-            <img :src="CloseIcon" alt="closeIcon" />
-          </button>
-        </li>
-
-        <li class="flex gap-2 items-start justify-start w-[35vw]">
-          <p class="font-bold w-[8vw] text-[20px]">Phone:</p>
-          <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.phone" class="text-[18px]">
-              {{ user.phone }}
-            </p>
-            <form v-if="updatedInfo.phone" class="input-border">
-              <input
-                type="number"
-                placeholder="Phone"
-                class="pl-3 w-[20vw] outline-none"
-                name="phone"
-              />
-            </form>
-            <button
-              type="button"
-              @click="() => toggleUpdatedInfo('phone')"
-              v-if="!updatedInfo.phone"
-            >
-              <PenIcon />
-            </button>
-          </div>
-          <button
-            type="button"
-            v-if="updatedInfo.phone"
-            @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8 mr-3"
-          >
-            <img :src="CloseIcon" alt="closeIcon" />
-          </button>
-        </li>
-
-        <li
-          class="flex gap-2 items-start justify-start w-[35vw] pb-8 border-bottom"
+        <ul
+          v-for="user in users"
+          class="flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
         >
-          <p class="font-bold w-[8vw] text-[20px]">Email:</p>
-          <div class="flex items-center justify-between w-[25vw] gap-10">
-            <p v-if="!updatedInfo.email" class="text-[18px]">
-              {{ user.email }}
-            </p>
-            <form v-if="updatedInfo.email" class="input-border">
-              <input
-                type="text"
-                placeholder="E-Mail"
-                class="pl-3 w-[20vw] outline-none"
-                name="email"
-              />
-            </form>
+          <li class="flex gap-2 items-start justify-start w-[35vw]">
+            <p class="font-bold w-[8vw] text-[20px]">Name:</p>
+            <div class="flex items-center justify-between w-[25vw] gap-10">
+              <p v-if="!updatedInfo.name" class="text-[18px]">
+                {{ user.username }}
+              </p>
+              <form v-if="updatedInfo.name" class="input-border">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  class="pl-3 w-[20vw] outline-none"
+                  name="name"
+                />
+              </form>
+              <button
+                type="button"
+                @click="() => toggleUpdatedInfo('name')"
+                v-if="!updatedInfo.name"
+              >
+                <PenIcon />
+              </button>
+            </div>
+
             <button
               type="button"
-              @click="() => toggleUpdatedInfo('email')"
-              v-if="!updatedInfo.email"
+              v-if="updatedInfo.name"
+              @click="reloadButton"
+              class="flex justify-center items-center w-8 h-8 mr-3"
             >
-              <PenIcon />
+              <img :src="CloseIcon" alt="closeIcon" />
             </button>
-          </div>
+          </li>
 
-          <button
-            type="button"
-            v-if="updatedInfo.email"
-            @click="reloadButton"
-            class="flex justify-center items-center w-8 h-8 mr-3"
+          <li class="flex gap-2 items-start justify-start w-[35vw]">
+            <p class="font-bold w-[8vw] text-[20px]">Phone:</p>
+            <div class="flex items-center justify-between w-[25vw] gap-10">
+              <p v-if="!updatedInfo.phone" class="text-[18px]">
+                {{ user.phone }}
+              </p>
+              <form v-if="updatedInfo.phone" class="input-border">
+                <input
+                  type="number"
+                  placeholder="Phone"
+                  class="pl-3 w-[20vw] outline-none"
+                  name="phone"
+                />
+              </form>
+              <button
+                type="button"
+                @click="() => toggleUpdatedInfo('phone')"
+                v-if="!updatedInfo.phone"
+              >
+                <PenIcon />
+              </button>
+            </div>
+            <button
+              type="button"
+              v-if="updatedInfo.phone"
+              @click="reloadButton"
+              class="flex justify-center items-center w-8 h-8 mr-3"
+            >
+              <img :src="CloseIcon" alt="closeIcon" />
+            </button>
+          </li>
+
+          <li
+            class="flex gap-2 items-start justify-start w-[35vw] pb-8 border-bottom"
           >
-            <img :src="CloseIcon" alt="closeIcon" />
-          </button>
-        </li>
+            <p class="font-bold w-[8vw] text-[20px]">Email:</p>
+            <div class="flex items-center justify-between w-[25vw] gap-10">
+              <p v-if="!updatedInfo.email" class="text-[18px]">
+                {{ user.email }}
+              </p>
+              <form v-if="updatedInfo.email" class="input-border">
+                <input
+                  type="text"
+                  placeholder="E-Mail"
+                  class="pl-3 w-[20vw] outline-none"
+                  name="email"
+                />
+              </form>
+              <button
+                type="button"
+                @click="() => toggleUpdatedInfo('email')"
+                v-if="!updatedInfo.email"
+              >
+                <PenIcon />
+              </button>
+            </div>
 
-        <li class="flex flex-col items-start justify-start text-start gap-2">
-          <div class="flex items-start justify-start">
-            <p class="font-bold w-[6vw] text-l">Termin:</p>
-            <p class="text-l text-start">
-              {{ services[0].date }} / {{ services[0].selectedTimeStart }} Uhr
-            </p>
-          </div>
-          <div class="flex items-start justify-start">
-            <p class="font-bold w-[6vw] text-l">Service:</p>
-            <p class="text-l">
-              {{ services[0].selectedService }}
-            </p>
-          </div>
-        </li>
-        <button
-          type="submit"
-          v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
-          class="border w-[100%] px-6 py-2 mt-4 mx-auto rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
-          @click="(e) => acceptInfo(e)"
-        >
-          Akzeptieren
-        </button>
-      </ul>
+            <button
+              type="button"
+              v-if="updatedInfo.email"
+              @click="reloadButton"
+              class="flex justify-center items-center w-8 h-8 mr-3"
+            >
+              <img :src="CloseIcon" alt="closeIcon" />
+            </button>
+          </li>
+
+          <li class="flex flex-col items-start justify-start text-start gap-2">
+            <div class="flex items-start justify-start">
+              <p class="font-bold w-[6vw] text-l">Termin:</p>
+              <p class="text-l text-start">
+                {{ services[0].date }} / {{ services[0].selectedTimeStart }} Uhr
+              </p>
+            </div>
+            <div class="flex items-start justify-start">
+              <p class="font-bold w-[6vw] text-l">Service:</p>
+              <p class="text-l">
+                {{ services[0].selectedService }}
+              </p>
+            </div>
+          </li>
+          <button
+            type="submit"
+            v-if="updatedInfo.phone || updatedInfo.name || updatedInfo.email"
+            class="border w-[100%] px-6 py-2 mt-4 mx-auto rounded bg-green-500 hover:bg-green-600 active:scale-95 transition-all text-white form-bold"
+            @click="(e) => acceptInfo(e)"
+          >
+            Akzeptieren
+          </button>
+        </ul>
+      </div>
     </div>
-  </div>
+  <!-- </div> -->
+  <!-- <div v-else>
+    <p>Profil sayfasına erişim izniniz yok. Lütfen giriş yapın.</p>
+  </div> -->
 </template>
 
 <script setup lang="ts">
 import type { Services, UpdatedInfo, UserNotService } from '@/types';
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import PenIcon from '../assets/Icons/PenIcon.vue';
 import CloseIcon from '../assets/Icons/closeIcon.png';
 import { getItem } from '../helper/persistanceStorage';
@@ -157,6 +163,11 @@ const updatedInfo = ref<UpdatedInfo>({
   phone: false,
   email: false,
 });
+// const token = getItem('token');
+
+// const isAuthenticated = computed(() => {
+//   return getItem("token") === 'false';
+// });
 
 onMounted(async () => {
   try {

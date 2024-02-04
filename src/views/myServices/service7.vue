@@ -7,7 +7,7 @@
       </div> -->
       <div class="flex justify-center items-center gap-2">
         <p class="text-l text-indigo-950">Ihre Wahl ist</p>
-        <NameService :serviceId="9" />
+        <NameService :serviceId="7" />
       </div>
     </div>
 
@@ -27,10 +27,10 @@
 
 <script setup lang="ts">
 import { provide, ref } from 'vue';
-import NameService from '../components/NameService.vue';
-import SelectDate from '../components/SelectDate.vue';
-import UserName from '../components/Username.vue';
-import DownArrow from '../assets/Icons/down-arrow.gif';
+import NameService from '../../components/NameService.vue';
+import SelectDate from '../../components/SelectDate.vue';
+import UserName from '../../components/Username.vue';
+import DownArrow from '../../assets/Icons/down-arrow.gif';
 
 const showSuccessMessage = ref(false);
 const userDetails = ref({ username: '', email: '' });

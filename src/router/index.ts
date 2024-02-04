@@ -10,15 +10,15 @@ import SignOut from '../views/SignOut.vue';
 import Team from '../views/Team.vue';
 import Termin from '../views/Termin.vue';
 import Admin from '../views/dashboard/Admin.vue';
-import Service1 from '../views/service1.vue';
-import Service2 from '../views/service2.vue';
-import Service3 from '../views/service3.vue';
-import Service4 from '../views/service4.vue';
-import Service5 from '../views/service5.vue';
-import Service6 from '../views/service6.vue';
-import Service7 from '../views/service7.vue';
-import Service8 from '../views/service8.vue';
-import Service9 from '../views/service9.vue';
+import Service1 from '../views/myServices/service1.vue';
+import Service2 from '../views/myServices/service2.vue';
+import Service3 from '../views/myServices/service3.vue';
+import Service4 from '../views/myServices/service4.vue';
+import Service5 from '../views/myServices/service5.vue';
+import Service6 from '../views/myServices/service6.vue';
+import Service7 from '../views/myServices/service7.vue';
+import Service8 from '../views/myServices/service8.vue';
+import Service9 from '../views/myServices/service9.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
