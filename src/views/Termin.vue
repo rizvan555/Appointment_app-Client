@@ -37,5 +37,4 @@ onMounted(async () => {
       <Service />
     </div>
   </main>
-  <hr class="my-6" />
 </template>

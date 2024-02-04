@@ -1,5 +1,5 @@
 <template>
-  <div class="py-12">
+  <div class="h-[100vh]">
     <div class="flex justify-center items-start gap-16 px-8 pt-10 pb-20">
       <div class="flex flex-col w-[25vw]">
         <h1 class="text-3xl font-bold text-indigo-950">Über Uns</h1>
@@ -42,7 +42,6 @@
       </div>
     </div>
   </div>
-  <hr />
 </template>
 
 <script setup lang="ts"></script>

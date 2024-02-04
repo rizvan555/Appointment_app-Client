@@ -1,86 +1,82 @@
 <template>
-  <div
-    class="auth-page reg-container pb-10 w-[35vw] my-[6vh] mx-auto rounded bg-slate-50"
-  >
-    <div class=" ">
-      <div class="">
-        <div class="flex flex-col gap-2 px-6 py-2">
-          <h1 class="text-xs-center text-center text-2xl my-10 font-bold">
-            SIGN UP
-          </h1>
-          <p class="text-xs-center">
-            <router-link :to="{ name: 'login' }">
-              Have an account?
-            </router-link>
-          </p>
+  <div class="h-[80vh]">
+    <div
+      class="auth-page reg-container pb-10 w-[35vw] my-[10vh] mx-auto rounded bg-slate-50"
+    >
+      <div class="flex flex-col gap-2 px-6 py-2">
+        <h1 class="text-xs-center text-center text-2xl my-10 font-bold">
+          SIGN UP
+        </h1>
+        <p class="text-xs-center">
+          <router-link :to="{ name: 'login' }"> Have an account? </router-link>
+        </p>
 
-          <form @submit.prevent="onSubmit" class="flex flex-col gap-3">
-            <fieldset class="form-group">
-              <input
-                v-model="formData.username"
-                class="form-control form-control-lg"
-                :class="{ 'border-red-500': errors.username }"
-                type="text"
-                placeholder="Username"
-                @input="clearError('username')"
-              />
-              <div v-if="errors.username" class="text-red-500">
-                {{ errors.username }}
-              </div>
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                v-model="formData.email"
-                class="form-control form-control-lg"
-                :class="{ 'border-red-500': errors.email }"
-                type="text"
-                placeholder="E-Mail"
-                autocomplete="email"
-                @input="clearError('email')"
-              />
-              <div v-if="errors.email" class="text-red-500">
-                {{ errors.email }}
-              </div>
-            </fieldset>
+        <form @submit.prevent="onSubmit" class="flex flex-col gap-3">
+          <fieldset class="form-group">
+            <input
+              v-model="formData.username"
+              class="form-control form-control-lg"
+              :class="{ 'border-red-500': errors.username }"
+              type="text"
+              placeholder="Username"
+              @input="clearError('username')"
+            />
+            <div v-if="errors.username" class="text-red-500">
+              {{ errors.username }}
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              v-model="formData.email"
+              class="form-control form-control-lg"
+              :class="{ 'border-red-500': errors.email }"
+              type="text"
+              placeholder="E-Mail"
+              autocomplete="email"
+              @input="clearError('email')"
+            />
+            <div v-if="errors.email" class="text-red-500">
+              {{ errors.email }}
+            </div>
+          </fieldset>
 
-            <fieldset class="form-group">
-              <input
-                v-model="formData.phone"
-                class="form-control form-control-lg"
-                :class="{ 'border-red-500': errors.phone }"
-                type="text"
-                placeholder="Telephone"
-                @input="clearError('phone')"
-              />
-              <div v-if="errors.phone" class="text-red-500">
-                {{ errors.phone }}
-              </div>
-            </fieldset>
+          <fieldset class="form-group">
+            <input
+              v-model="formData.phone"
+              class="form-control form-control-lg"
+              :class="{ 'border-red-500': errors.phone }"
+              type="text"
+              placeholder="Telephone"
+              @input="clearError('phone')"
+            />
+            <div v-if="errors.phone" class="text-red-500">
+              {{ errors.phone }}
+            </div>
+          </fieldset>
 
-            <fieldset class="form-group">
-              <input
-                v-model="formData.password"
-                class="form-control form-control-lg"
-                :class="{ 'border-red-500': errors.password }"
-                type="password"
-                placeholder="Password"
-                autocomplete="current-password"
-                @input="clearError('password')"
-              />
-              <div v-if="errors.password" class="text-red-500">
-                {{ errors.password }}
-              </div>
-            </fieldset>
+          <fieldset class="form-group">
+            <input
+              v-model="formData.password"
+              class="form-control form-control-lg"
+              :class="{ 'border-red-500': errors.password }"
+              type="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              @input="clearError('password')"
+            />
+            <div v-if="errors.password" class="text-red-500">
+              {{ errors.password }}
+            </div>
+          </fieldset>
 
-            <button
-              :disabled="isSubmitting"
-              class="bg-indigo-500 text-white rounded py-3 px-2 font-semibold hover:bg-indigo-700 active:scale-95 transition-all login-button"
-              type="submit"
-            >
-              REGISTER
-            </button>
-          </form>
-        </div>
+          <button
+            :disabled="isSubmitting"
+            class="bg-indigo-500 text-white rounded py-3 px-2 font-semibold hover:bg-indigo-700 active:scale-95 transition-all login-button"
+            type="submit"
+          >
+            REGISTER
+          </button>
+        </form>
       </div>
     </div>
   </div>

@@ -22,20 +22,21 @@
       </aside>
     </div>
 
-    <div class="">
+    <div class="h-[40vh]">
       <About />
     </div>
 
     <div class="">
       <TerminVue />
-    </div>
-
-    <div>
-      <Team />
       <hr class="my-6" />
     </div>
 
-    <div>
+    <div class="">
+      <Team />
+      <hr class="" />
+    </div>
+
+    <div class="">
       <Gallery />
       <hr class="my-6" />
     </div>
@@ -48,8 +49,8 @@
 
 <script setup lang="ts">
 import About from './About.vue';
-import TerminVue from './Termin.vue';
-import Team from './Team.vue';
 import Kontakt from './Contact.vue';
 import Gallery from './Gallery.vue';
+import Team from './Team.vue';
+import TerminVue from './Termin.vue';
 </script>

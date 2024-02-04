@@ -1,69 +1,71 @@
 <template>
-  <div
-    class="auth-page reg-container pb-10 w-[35vw] my-[10vh] rounded mx-auto bg-slate-50"
-  >
-    <div class="">
+  <div class="h-[70vh]">
+    <div
+      class="auth-page reg-container pb-10 w-[35vw] mt-[10vh] rounded mx-auto bg-slate-50"
+    >
       <div class="">
-        <div class="flex flex-col gap-2 px-6 py-2">
-          <h1
-            class="text-xs-center text-center text-2xl my-6 font-bold login-title"
-          >
-            LOGIN
-          </h1>
-          <p class="text-xs-center">
-            <router-link :to="{ name: 'register' }">
-              Need an account?
-            </router-link>
-          </p>
-
-          <form
-            @submit.prevent="onSubmit"
-            class="flex flex-col gap-3"
-            method="post"
-          >
-            <fieldset class="form-group">
-              <input
-                v-model="formData.username"
-                class="form-control form-control-lg email-input"
-                :class="{ 'border-red-500': errors.username }"
-                id="username-input"
-                type="text"
-                placeholder="Username"
-                @input="clearError('username')"
-                name="username"
-                method="post"
-              />
-              <div v-if="errors.username" class="text-red-500">
-                {{ errors.username }}
-              </div>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input
-                v-model="formData.password"
-                class="form-control form-control-lg password-input"
-                :class="{ 'border-red-500': errors.password }"
-                id="password-input"
-                type="password"
-                placeholder="Password"
-                @input="clearError('password')"
-                name="password"
-                method="post"
-              />
-              <div v-if="errors.password" class="text-red-500">
-                {{ errors.password }}
-              </div>
-            </fieldset>
-
-            <button
-              :disabled="isSubmitting"
-              class="bg-indigo-500 text-white rounded py-3 px-2 font-semibold hover:bg-indigo-700 active:scale-95 transition-all login-button"
-              id="login-button"
-              type="submit"
+        <div class="">
+          <div class="flex flex-col gap-2 px-6 py-2">
+            <h1
+              class="text-xs-center text-center text-2xl my-6 font-bold login-title"
             >
               LOGIN
-            </button>
-          </form>
+            </h1>
+            <p class="text-xs-center mb-2">
+              <router-link :to="{ name: 'register' }">
+                Need an account?
+              </router-link>
+            </p>
+
+            <form
+              @submit.prevent="onSubmit"
+              class="flex flex-col gap-3"
+              method="post"
+            >
+              <fieldset class="form-group">
+                <input
+                  v-model="formData.username"
+                  class="form-control form-control-lg email-input mb-2"
+                  :class="{ 'border-red-500': errors.username }"
+                  id="username-input"
+                  type="text"
+                  placeholder="Username"
+                  @input="clearError('username')"
+                  name="username"
+                  method="post"
+                />
+                <div v-if="errors.username" class="text-red-500">
+                  {{ errors.username }}
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <input
+                  v-model="formData.password"
+                  class="form-control form-control-lg password-input mb-5"
+                  :class="{ 'border-red-500': errors.password }"
+                  id="password-input"
+                  type="password"
+                  placeholder="Password"
+                  @input="clearError('password')"
+                  name="password"
+                  method="post"
+                />
+                <div v-if="errors.password" class="text-red-500">
+                  {{ errors.password }}
+                </div>
+              </fieldset>
+
+              <button
+                :disabled="isSubmitting"
+                class="bg-indigo-500 text-white rounded py-3 px-2 font-semibold hover:bg-indigo-700 active:scale-95 transition-all login-button"
+                id="login-button"
+                type="submit"
+              >
+                LOGIN
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 <template>
-  <div class="pb-8">
-    <h1 class="mx-auto text-center text-3xl my-4 font-bold">Unsere Team</h1>
+  <div class="h-[80vh]">
+    <h1 class="mx-auto text-center text-3xl mt-4 mb-12 font-bold">
+      Unsere Team
+    </h1>
 
     <ul class="grid grid-cols-3 gap-4 px-10 py-2 text-center">
       <div data-aos="fade-up-right">
@@ -23,7 +25,7 @@
             class="w-[20vw] px-4 py-4 mx-auto"
           />
           <h1 class="text-2xl font-semibold">Harun Ademoglu</h1>
-          <h5 class="text-l font-serif">Barber</h5>
+          <h5 class="text-l pb-3 font-serif">Barber</h5>
         </li>
       </div>
 
@@ -35,7 +37,7 @@
             class="w-[20vw] px-4 py-4 mx-auto"
           />
           <h1 class="text-2xl font-semibold">Patrik Müller</h1>
-          <h5 class="text-l font-serif">Barber</h5>
+          <h5 class="text-l pb-3 font-serif">Barber</h5>
         </li>
       </div>
     </ul>

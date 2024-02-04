@@ -1,13 +1,13 @@
 <template>
-  <div class="">
+  <div class="h-[70vh]">
     <div
       class="flex w-[45vw] my-32 py-20 px-10 rounded mx-auto items-center justify-center reg-container"
     >
       <div class="text-center">
-        <h3 class="text-xl font-bold mb-6">
+        <h3 class="text-xl font-bold mb-14">
           Sind Sie sicher, dass Sie sich abmelden möchten?
         </h3>
-        <div class="flex justify-center items-center gap-4">
+        <div class="flex justify-center items-center gap-12">
           <button
             @click="signOut"
             class="bg-green-500 text-white px-4 py-2 rounded"
