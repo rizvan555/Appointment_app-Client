@@ -124,6 +124,11 @@ const router = createRouter({
       name: 'galerie',
       component: Galerie,
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component: () => import("../views/404.vue")
+    }
   ],
 });
 

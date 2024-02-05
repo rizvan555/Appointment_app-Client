@@ -179,6 +179,7 @@
   border-right: none;
   border-top: none;
   outline: none;
+  width: 27vw;
 }
 .input-border:focus {
   border: #ccc solid 1px;

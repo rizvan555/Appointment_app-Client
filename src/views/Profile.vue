@@ -1,15 +1,17 @@
 <template>
-  <!-- <div v-if="isAuthenticated"> -->
-    <div class="mb-10">
+  <div v-if="token">
+    <div class="mb-10 h-[60vh]">
       <div
-        class="flex flex-col my-24 mx-auto text-center border w-[40vw] h-[44vh] contact bg-slate-50 rounded"
+        class="flex flex-col my-24 pb-10 mx-auto text-center border w-[40vw] contact bg-slate-50 rounded"
         :class="{
           'h-[54vh]':
             updatedInfo.name || updatedInfo.phone || updatedInfo.email,
         }"
       >
         <div class="bg-slate-900 rounded-t">
-          <h1 class="font-bold text-3xl bg-slate-900 text-indigo-50 my-4">Mein Konto</h1>
+          <h1 class="font-bold text-3xl bg-slate-900 text-indigo-50 my-4">
+            Mein Konto
+          </h1>
         </div>
         <hr />
 
@@ -18,18 +20,13 @@
           class="flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
         >
           <li class="flex gap-2 items-start justify-start w-[35vw]">
-            <p class="font-bold w-[8vw] text-[20px]">Name:</p>
-            <div class="flex items-center justify-between w-[25vw] gap-10">
+            <p class="font-bold w-[8vw] text-[18px]">Name:</p>
+            <div class="flex items-center justify-between w-[45vw] gap-10">
               <p v-if="!updatedInfo.name" class="text-[18px]">
                 {{ user.username }}
               </p>
               <form v-if="updatedInfo.name" class="input-border">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  class="pl-3 w-[20vw] outline-none"
-                  name="name"
-                />
+                <input type="text" class="outline-none" name="name" />
               </form>
               <button
                 type="button"
@@ -44,25 +41,20 @@
               type="button"
               v-if="updatedInfo.name"
               @click="reloadButton"
-              class="flex justify-center items-center w-8 h-8 mr-3"
+              class="flex justify-center items-center w-8 h-8"
             >
               <img :src="CloseIcon" alt="closeIcon" />
             </button>
           </li>
 
           <li class="flex gap-2 items-start justify-start w-[35vw]">
-            <p class="font-bold w-[8vw] text-[20px]">Phone:</p>
-            <div class="flex items-center justify-between w-[25vw] gap-10">
-              <p v-if="!updatedInfo.phone" class="text-[18px]">
+            <p class="font-bold w-[8vw] text-[18px]">Phone:</p>
+            <div class="flex items-center justify-between w-[45vw] gap-10">
+              <p v-if="!updatedInfo.phone" class="text-[16px]">
                 {{ user.phone }}
               </p>
               <form v-if="updatedInfo.phone" class="input-border">
-                <input
-                  type="number"
-                  placeholder="Phone"
-                  class="pl-3 w-[20vw] outline-none"
-                  name="phone"
-                />
+                <input type="number" class="outline-none" name="phone" />
               </form>
               <button
                 type="button"
@@ -76,27 +68,22 @@
               type="button"
               v-if="updatedInfo.phone"
               @click="reloadButton"
-              class="flex justify-center items-center w-8 h-8 mr-3"
+              class="flex justify-center items-center w-8 h-8"
             >
               <img :src="CloseIcon" alt="closeIcon" />
             </button>
           </li>
 
           <li
-            class="flex gap-2 items-start justify-start w-[35vw] pb-8 border-bottom"
+            class="flex gap-2 items-start justify-start w-[35vw] pb-8 border-bottom border-black"
           >
-            <p class="font-bold w-[8vw] text-[20px]">Email:</p>
-            <div class="flex items-center justify-between w-[25vw] gap-10">
+            <p class="font-bold w-[8vw] text-[18px]">E-Mail:</p>
+            <div class="flex items-center justify-between w-[45vw] gap-10">
               <p v-if="!updatedInfo.email" class="text-[18px]">
                 {{ user.email }}
               </p>
               <form v-if="updatedInfo.email" class="input-border">
-                <input
-                  type="text"
-                  placeholder="E-Mail"
-                  class="pl-3 w-[20vw] outline-none"
-                  name="email"
-                />
+                <input type="text" class="outline-none" name="email" />
               </form>
               <button
                 type="button"
@@ -111,7 +98,7 @@
               type="button"
               v-if="updatedInfo.email"
               @click="reloadButton"
-              class="flex justify-center items-center w-8 h-8 mr-3"
+              class="flex justify-center items-center w-8 h-8"
             >
               <img :src="CloseIcon" alt="closeIcon" />
             </button>
@@ -142,19 +129,20 @@
         </ul>
       </div>
     </div>
-  <!-- </div> -->
-  <!-- <div v-else>
-    <p>Profil sayfasına erişim izniniz yok. Lütfen giriş yapın.</p>
-  </div> -->
+  </div>
+  <div v-else>
+    <ErrorPage />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { Services, UpdatedInfo, UserNotService } from '@/types';
 import axios from 'axios';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import PenIcon from '../assets/Icons/PenIcon.vue';
 import CloseIcon from '../assets/Icons/closeIcon.png';
 import { getItem } from '../helper/persistanceStorage';
+import ErrorPage from './404.vue';
 
 const users = ref<UserNotService[]>([]);
 const services = ref<Services[]>([]);
@@ -163,7 +151,7 @@ const updatedInfo = ref<UpdatedInfo>({
   phone: false,
   email: false,
 });
-// const token = getItem('token');
+const token = getItem('token');
 
 // const isAuthenticated = computed(() => {
 //   return getItem("token") === 'false';

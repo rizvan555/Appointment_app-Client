@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2">
+  <div class="py-7">
     <div
       v-if="!showSuccessMessage"
       class="flex justify-center items-center container my-[2vh] gap-5"
@@ -21,12 +21,12 @@
       </div>
     </div>
     <div
-      class="flex flex-col justify-center items-center h-[40vh]"
+      class="flex flex-col justify-center items-center h-[50vh] mb-10"
       v-if="!hasToken"
     >
-      <img :src="AttentionIcon" alt="AttentionIcon" class="w-20 mb-4" />
-      <h1 class="text-red-500 text-center text-xl mb-4 font-bold">
-        Sie müssen sich anmelden
+      <img :src="AttentionIcon" alt="AttentionIcon" class="w-20 mb-10" />
+      <h1 class="text-red-500 text-center text-3xl mb-4 font-bold">
+        Sie müssen sich anmelden !!!
       </h1>
     </div>
 
@@ -34,41 +34,43 @@
       class="flex justify-center items-center w-[50vw] mx-auto my-[13vh]"
       v-if="showSuccessMessage"
     >
-      <div class="flex flex-col justify-center items-start py-4">
-        <div class="mb-10 font-bold text-xl flex items-center gap-3">
-          <OkIcon class="w-10 h-10 text-green-500" />
-          <h1>Ihr Termin wurde bestätigt</h1>
-        </div>
+      <div class="my-10">
+        <div class="flex flex-col justify-center items-start py-4">
+          <div class="mb-10 font-bold text-xl flex items-center gap-3">
+            <OkIcon class="w-10 h-10 text-green-500" />
+            <h1>Ihr Termin wurde bestätigt</h1>
+          </div>
 
-        <div class="">
-          <div v-if="date" class="flex items-center gap-3 text-base">
-            <div class="flex items-center gap-1">
-              <calendar class="w-4 h-4"></calendar>
-              <p class="font-semibold w-[5vw]">Datum:</p>
+          <div class="">
+            <div v-if="date" class="flex items-center gap-3 text-base">
+              <div class="flex items-center gap-1">
+                <calendar class="w-4 h-4"></calendar>
+                <p class="font-semibold w-[5vw]">Datum:</p>
+              </div>
+              <p>{{ customDateFormatter(date.toString()) }}</p>
             </div>
-            <p>{{ customDateFormatter(date.toString()) }}</p>
-          </div>
-          <div
-            v-if="date"
-            class="text-base flex gap-3"
-            :class="{
-              'text-red-600': !checkTime,
-            }"
-          >
-            <div class="flex items-center gap-1">
-              <clock1 class="w-4 h-4"></clock1>
-              <p class="font-semibold w-[5vw]">Zeit:</p>
+            <div
+              v-if="date"
+              class="text-base flex gap-3"
+              :class="{
+                'text-red-600': !checkTime,
+              }"
+            >
+              <div class="flex items-center gap-1">
+                <clock1 class="w-4 h-4"></clock1>
+                <p class="font-semibold w-[5vw]">Zeit:</p>
+              </div>
+              <p>
+                {{ formDataServices.selectedTimeStart }}
+              </p>
             </div>
-            <p>
-              {{ formDataServices.selectedTimeStart }}
-            </p>
-          </div>
-          <div class="flex justify-center items-center gap-3">
-            <div class="flex items-center gap-1">
-              <service class="w-4 h-4"></service>
-              <p class="font-semibold w-[5vw]">Service:</p>
+            <div class="flex justify-center items-center gap-3">
+              <div class="flex items-center gap-1">
+                <service class="w-4 h-4"></service>
+                <p class="font-semibold w-[5vw]">Service:</p>
+              </div>
+              <p>{{ selectedServiceName }}</p>
             </div>
-            <p>{{ selectedServiceName }}</p>
           </div>
         </div>
       </div>
