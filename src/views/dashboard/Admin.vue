@@ -1,74 +1,79 @@
 <template>
-  <div class="mt-1 mb-6 h-[70vh]">
-    <v-layout>
-      <v-navigation-drawer
-        v-model="drawer"
-        :rail="rail"
-        permanent
-        @click="rail = false"
-      >
-        <v-list-item
-          v-for="user in users"
-          prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-          nav
-          @click.stop="rail = !rail"
-          class="py-3"
+  <div v-if="token">
+    <div class="mt-1 mb-6 h-[70vh]">
+      <v-layout>
+        <v-navigation-drawer
+          v-model="drawer"
+          :rail="rail"
+          permanent
+          @click="rail = false"
         >
-          <div v-if="user.username === 'Rizvan'">
-            <b>ADMIN:</b> {{ user.username }}
+          <v-list-item
+            v-for="user in users"
+            prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
+            nav
+            @click.stop="rail = !rail"
+            class="py-3"
+          >
+            <div v-if="user.username === 'Rizvan'">
+              <b>ADMIN:</b> {{ user.username }}
+            </div>
+            <div v-else><b>HR:</b> {{ user.username }}</div>
+            <template v-slot:append>
+              <v-btn
+                variant="text"
+                icon="mdi-chevron-left"
+                @click.stop="rail = !rail"
+              ></v-btn>
+            </template>
+          </v-list-item>
+
+          <v-divider></v-divider>
+
+          <v-list density="compact" nav>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home"
+              @click="updateValue('home')"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="Mein Konto"
+              value="account"
+              @click="updateValue('account')"
+            ></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Benutzer"
+              value="users"
+              @click="updateValue('users')"
+            ></v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+
+        <div class="">
+          <div
+            v-if="value === 'home'"
+            class="w-[90vw] ml-24 px-2 border"
+            :class="{ 'w-[76vw] ml-[22vw]': !rail }"
+          >
+            <customer-list></customer-list>
           </div>
-          <div v-else><b>HR:</b> {{ user.username }}</div>
-          <template v-slot:append>
-            <v-btn
-              variant="text"
-              icon="mdi-chevron-left"
-              @click.stop="rail = !rail"
-            ></v-btn>
-          </template>
-        </v-list-item>
 
-        <v-divider></v-divider>
-
-        <v-list density="compact" nav>
-          <v-list-item
-            prepend-icon="mdi-home-city"
-            title="Home"
-            value="home"
-            @click="updateValue('home')"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-account"
-            title="Mein Konto"
-            value="account"
-            @click="updateValue('account')"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-account-group-outline"
-            title="Benutzer"
-            value="users"
-            @click="updateValue('users')"
-          ></v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
-      <div class="">
-        <div
-          v-if="value === 'home'"
-          class="w-[90vw] ml-24 px-2 border"
-          :class="{ 'w-[76vw] ml-[22vw]': !rail }"
-        >
-          <customer-list></customer-list>
+          <div
+            v-if="value === 'account'"
+            class="ml-96"
+            :class="{ 'w-[5vw] ml-[38vw]': !rail }"
+          >
+            <profile></profile>
+          </div>
         </div>
-
-        <div
-          v-if="value === 'account'"
-          class="ml-96"
-          :class="{ 'w-[5vw] ml-[38vw]': !rail }"
-        >
-          <profile></profile>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </div>
+  </div>
+  <div v-else>
+    <ErrorPage />
   </div>
 </template>
 
@@ -88,6 +93,7 @@ import CustomerList from '../../components/CustomerList.vue';
 import { getItem } from '../../helper/persistanceStorage';
 import { useUsersStore } from '../../stores/useAllUsers';
 import Profile from '../../views/Profile.vue';
+import ErrorPage from '../404.vue';
 
 const drawer = ref(true);
 const rail = ref(true);
@@ -96,6 +102,7 @@ const users = ref<UserNotService[]>([]);
 const value = ref('home');
 const usersStore = useUsersStore();
 console.log(usersStore);
+const token = getItem('token');
 
 const updateValue = (newValue: any) => {
   value.value = newValue;
