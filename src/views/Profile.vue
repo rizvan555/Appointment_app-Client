@@ -153,10 +153,6 @@ const updatedInfo = ref<UpdatedInfo>({
 });
 const token = getItem('token');
 
-// const isAuthenticated = computed(() => {
-//   return getItem("token") === 'false';
-// });
-
 onMounted(async () => {
   try {
     const token = getItem('token');
