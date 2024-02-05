@@ -1,10 +1,10 @@
 <template>
-  <div class="py-7">
+  <div class="pt-7 pb-14">
     <div
       v-if="!showSuccessMessage"
-      class="flex justify-center items-center container my-[2vh] gap-5"
+      class="flex justify-center items-center my-[2vh] gap-5"
     >
-      <div class="w-[50vw] calendar rounded-lg" v-if="hasToken">
+      <div class="w-[50vw] mb-8 calendar rounded" v-if="hasToken">
         <VDatePicker
           v-model="date"
           mode="date"
@@ -16,7 +16,6 @@
           :disabled-dates="disabledDates"
           :disabled="userDetails && userDetails.username === ''"
           :min-date="startDate"
-          style="background-color: #f8f6f1"
         />
       </div>
     </div>
@@ -76,17 +75,29 @@
       </div>
     </div>
 
-    <div class="rounded-lg w-[40vw] mx-auto bg-[#f8f6f1]" v-if="hasToken">
+    <div
+      class="grid grid-cols-2 mx-auto w-[51vw] gap-x-10 gap-y-6 rounded-lg"
+      v-if="hasToken"
+    >
       <div
         v-if="date && selectAttribute && !showSuccessMessage"
         v-for="timeSlot in timeSlots"
         :key="timeSlot.start"
       >
-        <div class="flex justify-between items-center">
-          <div
-            class="flex items-center gap-3 py-6 px-10"
+        <div
+          class="flex justify-between items-center w-[24vw] bg-green-500 text-white font-semibold dateBox"
+          :class="{
+            'bg-red-500 disabled':
+              (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||
+              new Date(date) < new Date(Date.now()),
+          }"
+        >
+          <button
+            ref="submitButton"
+            @click="($event) => handleSubmit($event, timeSlot.id)"
+            class="flex items-center gap-12 py-2 px-10"
             :class="{
-              'text-gray-400':
+              'text-black g disabled':
                 (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||
                 new Date(date) < new Date(Date.now()),
             }"
@@ -94,49 +105,15 @@
             <MaterialSymbolsAlarm class="w-5 h-5" />
             <div
               :class="{
-                'text-gray-400':
+                'text-black':
                   (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||
                   new Date(date) < new Date(Date.now()),
               }"
             >
               {{ timeSlot.display }}
             </div>
-          </div>
-
-          <button
-            ref="submitButton"
-            @click="($event) => handleSubmit($event, timeSlot.id)"
-            class="text-green-500 mr-10"
-            :class="{
-              ' text-red-500':
-                (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||
-                new Date(date) < new Date(Date.now()),
-            }"
-            :disabled="
-              Boolean(
-                getTimeAndDate && getTimeAndDate.includes(timeSlot.start)
-              ) || new Date(date) < new Date(Date.now())
-            "
-          >
-            <OkIcon
-              class="w-7 h-7 okicon"
-              v-if="
-                !(getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) &&
-                new Date(date) >= new Date(Date.now())
-              "
-            />
-            <Disabled
-              class="w-7 h-7"
-              v-if="
-                (getTimeAndDate &&
-                  getTimeAndDate.includes(timeSlot.start) &&
-                  new Date() >= new Date(Date.now())) ||
-                new Date(date) < new Date(Date.now())
-              "
-            />
           </button>
         </div>
-        <hr class="w-[35vw] mx-auto" />
       </div>
     </div>
   </div>
@@ -156,7 +133,6 @@ import axios from '../api/axios';
 import calendar from '../assets/Icons/Calendar.vue';
 import MaterialSymbolsAlarm from '../assets/Icons/Clock.vue';
 import clock1 from '../assets/Icons/Clock1.vue';
-import Disabled from '../assets/Icons/Disabled.vue';
 import OkIcon from '../assets/Icons/OkIcon.vue';
 import service from '../assets/Icons/Service.vue';
 import AttentionIcon from '../assets/Icons/icons8-attention.gif';
@@ -327,13 +303,6 @@ const timeSlots = ref([
     display: '19:00 pm - 19:30 pm',
     position: true,
   },
-  {
-    id: 13,
-    start: '20:00',
-    end: '20:30',
-    display: '20:00 pm - 20:30 pm',
-    position: true,
-  },
 ]);
 
 const getTimeAndDate = computed(() => {
@@ -396,6 +365,7 @@ onMounted(async () => {
     console.error('Error fetching user list:', error);
   }
 });
+
 onMounted(async () => {
   try {
     const token = getItem('token');
