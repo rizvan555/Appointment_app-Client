@@ -1,18 +1,23 @@
 <template>
-  <div class="flex items-center justify-between gap-4 px-10 py-6 bg-slate-900">
+  <div class="flex items-center justify-between gap-4 px-10 py-1 bg-slate-900">
     <div class="flex items-center gap-[22vw]">
       <div class="flex items-center">
         <div class="flex flex-col items-center justify-center relative">
-          <!-- <img :src="Barber" alt="razor" class="w-20 z-0" /> -->
-          <div class="flex items-center z-20 font-serif pl-5">
+          <div class="flex items-center z-20 font-serif">
             <h1 class="text-xl font-semibold text-white text-[20px]">
-              <a href="/">Barberamania</a>
+              <a href="/">
+                <img
+                  :src="BarberLogo"
+                  alt="razor"
+                  class="w-16 z-0 rounded-full"
+                />
+              </a>
             </h1>
           </div>
         </div>
       </div>
 
-      <div class="flex justify-center items-center gap-[30px]">
+      <div class="flex justify-center items-center gap-[40px]">
         <button class="font-bold nav-buttons text-[17px]">
           <a href="/">Home</a>
         </button>
@@ -92,6 +97,7 @@ import type { UserNotService } from '@/types';
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
 import { VList, VListItem, VListItemTitle, VMenu } from 'vuetify/components';
+import BarberLogo from '../assets/logo/BarberLogo.png';
 import { getItem } from '../helper/persistanceStorage';
 import { useNavbarStore } from '../stores/useNavbar';
 import AvatarLetter from './AvatarLetter.vue';

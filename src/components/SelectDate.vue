@@ -95,7 +95,7 @@
           <button
             ref="submitButton"
             @click="($event) => handleSubmit($event, timeSlot.id)"
-            class="flex items-center gap-12 py-2 px-10"
+            class="flex items-center gap-10 py-2 px-10"
             :class="{
               'text-black g disabled':
                 (getTimeAndDate && getTimeAndDate.includes(timeSlot.start)) ||

@@ -7,7 +7,7 @@ import NavigationBar from './components/NavigationBar.vue';
   <div class="">
     <navigation-bar />
     <label for=""></label>
-    <router-view class="mb-6" />
+    <router-view class="" />
     <footer-bar />
   </div>
 </template>

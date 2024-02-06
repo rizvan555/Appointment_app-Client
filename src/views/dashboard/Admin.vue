@@ -15,10 +15,10 @@
             @click.stop="rail = !rail"
             class="py-3"
           >
-            <div v-if="user.username === 'Rizvan'">
+            <div v-if="user.username === 'rizvan'">
               <b>ADMIN:</b> {{ user.username }}
             </div>
-            <div v-else><b>HR:</b> {{ user.username }}</div>
+            <div v-else><b>Admin:</b> {{ user.username }}</div>
             <template v-slot:append>
               <v-btn
                 variant="text"

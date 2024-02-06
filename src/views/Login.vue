@@ -89,11 +89,11 @@ const isSubmitting = ref(false);
 
 const schema = Yup.object().shape({
   username: Yup.string()
-    .min(3, 'Username must be at least 3 characters')
-    .required('Username is required'),
+    .min(3, 'Der Benutzername muss mindestens 3 Zeichen sein')
+    .required('Benutzername wird benötigt'),
   password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
+    .min(6, 'Das Passwort muss mindestens aus 6 Zeichen bestehen')
+    .required('Passwort wird benötigt'),
 });
 
 const errors = ref<Errors>({});

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[80vh]">
+  <div class="h-[75vh]">
     <h1 class="mx-auto text-center text-3xl mt-4 mb-12 font-bold">
       Unsere Team
     </h1>

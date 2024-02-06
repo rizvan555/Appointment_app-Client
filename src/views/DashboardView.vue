@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { useAuthStore } from '@/stores/useAuth';
+import { getItem } from '@/helper/persistanceStorage';
 import { onMounted, ref } from 'vue';
 
-const store = useAuthStore();
-const token = store.token;
+const token = getItem('token');
 const data = ref('');
 
 onMounted(async () => {

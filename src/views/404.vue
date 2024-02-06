@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="bg-slate-800 mt-[-25px]">
     <NotFound404 />
   </div>
 </template>

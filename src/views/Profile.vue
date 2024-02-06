@@ -1,10 +1,10 @@
 <template>
   <div v-if="token">
-    <div class="mb-10 h-[60vh]">
+    <div class="mb-16 h-[60vh]">
       <div
         class="flex flex-col my-24 pb-10 mx-auto text-center border w-[40vw] contact bg-slate-50 rounded"
         :class="{
-          'h-[54vh]':
+          'h-[60vh]':
             updatedInfo.name || updatedInfo.phone || updatedInfo.email,
         }"
       >

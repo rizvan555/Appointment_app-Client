@@ -22,7 +22,7 @@
       </aside>
     </div>
 
-    <div class="h-[40vh]">
+    <div class="h-[40vh] mb-32">
       <About />
     </div>
 
@@ -38,7 +38,6 @@
 
     <div class="">
       <Gallery />
-      <hr class="my-6" />
     </div>
 
     <div class="">
