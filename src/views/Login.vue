@@ -123,14 +123,23 @@ const onSubmit = async (e: any) => {
     setItem('token', userToken);
     console.log('Token set to localStorage:', getItem('token'));
 
-    router.afterEach(() => {
-      window.location.reload();
-    });
-    router.push('/');
-    if (response.data.redirect) {
-      router.push(response.data.redirect);
+    if (
+      formData.value.username === 'rizvan' &&
+      formData.value.password === '111111'
+    ) {
+      router.afterEach(() => {
+        window.location.reload();
+      });
+      router.push('/dashboard/admin');
     } else {
-      router.push({ name: 'home' });
+      router.afterEach(() => {
+        window.location.reload();
+      });
+      if (response.data.redirect) {
+        router.push(response.data.redirect);
+      } else {
+        router.push({ name: 'home' });
+      }
     }
   } catch (error: any) {
     if (error.name === 'ValidationError') {

@@ -2,7 +2,7 @@
   <div class="">
     <v-table density="compact" class="">
       <thead>
-        <tr>
+        <tr class="bg-slate-100">
           <th class="text-left">Name</th>
           <th class="text-left">E-Mail</th>
           <th class="text-left">Phone</th>

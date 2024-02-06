@@ -13,7 +13,7 @@
             prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
             nav
             @click.stop="rail = !rail"
-            class="py-3"
+            class="py-3 px-4"
           >
             <div v-if="user.username === 'rizvan'">
               <b>ADMIN:</b> {{ user.username }}
@@ -55,7 +55,7 @@
         <div class="">
           <div
             v-if="value === 'home'"
-            class="w-[90vw] ml-24 px-2 border"
+            class="w-[90vw] ml-24 border"
             :class="{ 'w-[76vw] ml-[22vw]': !rail }"
           >
             <customer-list></customer-list>
