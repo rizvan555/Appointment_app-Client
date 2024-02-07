@@ -1,5 +1,5 @@
 <template>
-  <div v-if="token">
+  <div v-if="users.length > 0 && users[0].username === 'Rizvan'">
     <div class="mt-1 mb-6 h-[70vh]">
       <v-layout>
         <v-navigation-drawer

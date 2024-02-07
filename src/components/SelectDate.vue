@@ -34,7 +34,7 @@
       v-if="showSuccessMessage"
     >
       <div class="my-10">
-        <div class="flex flex-col justify-center items-start py-4">
+        <div class="flex flex-col justify-center items-start py-1">
           <div class="mb-10 font-bold text-xl flex items-center gap-3">
             <OkIcon class="w-10 h-10 text-green-500" />
             <h1>Ihr Termin wurde bestätigt</h1>

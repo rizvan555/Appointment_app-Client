@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <div class="flex flex-col items-center justify-center relative">
           <div class="flex items-center z-20 font-serif">
-            <h1 class="text-xl font-semibold text-white text-[20px]">
+            <h1 class="text-xl font-semibold text-white text-[20px] ml-8">
               <a href="/">
                 <img
                   :src="BarberLogo"
