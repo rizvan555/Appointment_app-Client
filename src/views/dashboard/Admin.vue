@@ -1,12 +1,13 @@
 <template>
   <div v-if="users.length > 0 && users[0].username === 'Rizvan'">
     <div class="mt-1 mb-6 h-[70vh]">
-      <v-layout>
+      <v-layout class="">
         <v-navigation-drawer
           v-model="drawer"
           :rail="rail"
           permanent
           @click="rail = false"
+          class=""
         >
           <v-list-item
             v-for="user in users"
@@ -30,32 +31,32 @@
 
           <v-divider></v-divider>
 
-          <v-list density="compact" nav>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home"
-              @click="updateValue('home')"
-            ></v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="Mein Konto"
-              value="account"
-              @click="updateValue('account')"
-            ></v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Benutzer"
-              value="users"
-              @click="updateValue('users')"
-            ></v-list-item>
-          </v-list>
+            <v-list density="compact" nav>
+              <v-list-item
+                prepend-icon="mdi-home-city"
+                title="Home"
+                value="home"
+                @click="updateValue('home')"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Mein Konto"
+                value="account"
+                @click="updateValue('account')"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account-group-outline"
+                title="Benutzer"
+                value="users"
+                @click="updateValue('users')"
+              ></v-list-item>
+            </v-list>
         </v-navigation-drawer>
 
         <div class="">
           <div
             v-if="value === 'home'"
-            class="w-[90vw] ml-24 border"
+            class="w-[90vw] ml-28 border"
             :class="{ 'w-[76vw] ml-[22vw]': !rail }"
           >
             <customer-list></customer-list>
