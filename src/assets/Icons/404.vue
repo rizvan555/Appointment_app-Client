@@ -1,8 +1,8 @@
 <template>
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/000/svg"
     data-name="Layer 1"
-    viewBox="-180 70 1000 400"
+    viewBox="-120 70 900 400"
     id="page-not-found"
   >
     <path
