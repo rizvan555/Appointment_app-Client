@@ -419,22 +419,34 @@ const handleSubmit = async (e: any, timeSlotId: number) => {
       ? selectedTimeSlot.start
       : '';
 
-    const response = await axios.post(
-      '/api/api/services/addServices',
-      {
-        id: users.value[0].id,
-        date: date.value.toISOString().split('T')[0],
-        username: users.value[0].username,
-        email: users.value[0].email,
-        phone: users.value[0].phone,
-        selectedService: selectedServiceName.value,
-        selectedTimeStart: formDataServices.value.selectedTimeStart,
-      },
-      config
-    );
+    const [responseServices] = await Promise.all([
+      axios.post(
+        '/api/api/services/addServices',
+        {
+          id: users.value[0].id,
+          date: date.value.toISOString().split('T')[0],
+          username: users.value[0].username,
+          email: users.value[0].email,
+          phone: users.value[0].phone,
+          selectedService: selectedServiceName.value,
+          selectedTimeStart: formDataServices.value.selectedTimeStart,
+        },
+        config
+      ),
+      axios.post(
+        '/api/api/userServices/addUserServices',
+        {
+          date: date.value.toISOString().split('T')[0],
+          selectedTime: formDataServices.value.selectedTimeStart,
+          serviceName: selectedServiceName.value,
+          userID: users.value[0].id,
+        },
+        config
+      ),
+    ]);
 
-    if (response.data.accessToken) {
-      setItem('token', response.data.accessToken);
+    if (responseServices.data.accessToken) {
+      setItem('token', responseServices.data.accessToken);
     }
     showSuccessMessage.value = true;
   } catch (error: any) {
