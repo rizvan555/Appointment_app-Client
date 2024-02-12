@@ -6,11 +6,7 @@
           <div class="flex items-center z-20 font-serif">
             <h1 class="text-xl font-semibold text-white text-[20px] ml-8">
               <a href="/">
-                <img
-                  :src="BarberLogo"
-                  alt="razor"
-                  class="w-16 z-0 rounded-full"
-                />
+                <h1 class="w-16 my-6 z-0 rounded-full ml-8">BARBERSHOP</h1>
               </a>
             </h1>
           </div>
@@ -97,7 +93,6 @@ import type { UserNotService } from '@/types';
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
 import { VList, VListItem, VListItemTitle, VMenu } from 'vuetify/components';
-import BarberLogo from '../assets/logo/BarberLogo.png';
 import { getItem } from '../helper/persistanceStorage';
 import { useNavbarStore } from '../stores/useNavbar';
 import AvatarLetter from './AvatarLetter.vue';

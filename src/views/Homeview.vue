@@ -5,7 +5,7 @@
         class="flex flex-col items-start px-10 py-15 w-[45vw] float-right gap-2"
       >
         <h1 class="text-xl notHomeBg font-semibold text-orange-100">
-          Wilkommen beim Barberamania
+          Wilkommen beim Barbershop
         </h1>
         <h2 class="text-5xl text-white font-bold notHomeBg">
           Wir machen Ihren Stil zu Ihren Träumen
@@ -22,7 +22,7 @@
       </aside>
     </div>
 
-    <div class="h-[40vh] mb-32">
+    <div class="h-[40vh] mb-20">
       <About />
     </div>
 
