@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="flex justify-center items-center gap-[40px]">
+      <div class="flex justify-center items-center gap-[32px]">
         <button class="font-bold nav-buttons text-[17px]">
           <a href="/">Home</a>
         </button>

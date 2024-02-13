@@ -130,6 +130,7 @@ const router = createRouter({
       component: () => import("../views/404.vue")
     }
   ],
+  
 });
 
 export default router;
