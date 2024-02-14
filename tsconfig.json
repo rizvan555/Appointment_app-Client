@@ -9,6 +9,9 @@
     }
   ],
   "compilerOptions": {
-    "types": ["vuetify"]
-  }
+    "types": ["vuetify", "cypress", "node"],
+    "target": "es5",
+    "lib": ["es5", "dom"]
+  },
+  "include": ["**/*.ts"]
 }
