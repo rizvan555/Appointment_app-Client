@@ -20,6 +20,7 @@
               type="text"
               placeholder="Username"
               @input="clearError('username')"
+              name="username"
             />
             <div v-if="errors.username" class="text-red-500">
               {{ errors.username }}
@@ -34,6 +35,7 @@
               placeholder="E-Mail"
               autocomplete="email"
               @input="clearError('email')"
+              name="email"
             />
             <div v-if="errors.email" class="text-red-500">
               {{ errors.email }}
@@ -48,6 +50,7 @@
               type="text"
               placeholder="Telephone"
               @input="clearError('phone')"
+              name="phone"
             />
             <div v-if="errors.phone" class="text-red-500">
               {{ errors.phone }}
@@ -63,6 +66,7 @@
               placeholder="Password"
               autocomplete="current-password"
               @input="clearError('password')"
+              name="password"
             />
             <div v-if="errors.password" class="text-red-500">
               {{ errors.password }}

@@ -1,6 +1,6 @@
 export class HomePage {
   navigate() {
-    cy.viewport(1200, 100);
+    cy.viewport(1200, 1000);
     cy.visit('http://localhost:5173/');
   }
 

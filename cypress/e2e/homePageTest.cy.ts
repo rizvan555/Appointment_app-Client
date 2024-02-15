@@ -1,4 +1,4 @@
-import { HomePage } from '../../cypress/homePageObjectModel/homepage';
+import { HomePage } from '../../cypress/pageObjectModel/homepage';
 const homePagePom = new HomePage();
 
 describe('Test_click_to_service', () => {
