@@ -1,5 +1,6 @@
 describe('Test_click_to_service', () => {
   beforeEach(() => {
+    cy.viewport(1200, 1000);
     cy.visit('http://localhost:5173/');
   });
 
