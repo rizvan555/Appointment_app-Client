@@ -2,8 +2,12 @@ import { TerminPage } from '../../cypress/PageObjectModel/terminPage';
 const terminPagePOM = new TerminPage();
 
 describe('Test_termin', () => {
+  beforeEach(() => {
+    terminPagePOM.navigateLogin();
+  });
   it('check_termin', () => {
-    terminPagePOM.navigate();
+    terminPagePOM.inputs();
+    terminPagePOM.navigateTermin();
     terminPagePOM.url();
     terminPagePOM.service();
   });

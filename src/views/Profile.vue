@@ -17,7 +17,7 @@
 
         <ul
           v-for="user in users"
-          class="flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
+          class="profile_list flex flex-col justify-center items-start text-center mx-auto leading-6 gap-3 mt-8"
         >
           <li class="flex gap-2 items-start justify-start w-[35vw]">
             <p class="font-bold w-[8vw] text-[18px]">Name:</p>
