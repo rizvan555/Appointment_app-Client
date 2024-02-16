@@ -1,4 +1,4 @@
-import { RegisterPage } from '../../cypress/pageObjectModel/registerPage';
+import { RegisterPage } from '../../cypress/PageObjectModel/registerPage';
 const registerPagePOM = new RegisterPage();
 
 it('Test_Register', () => {

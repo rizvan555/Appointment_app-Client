@@ -1,4 +1,4 @@
-import { LoginPage } from '../../cypress/pageObjectModel/loginPage';
+import { LoginPage } from '../../cypress/PageObjectModel/loginPage';
 const loginPagePOM = new LoginPage();
 
 describe('Test_Login', () => {

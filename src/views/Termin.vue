@@ -33,7 +33,7 @@ onMounted(async () => {
       </h1>
     </div>
 
-    <div class="">
+    <div class="service_component">
       <Service />
     </div>
   </main>
