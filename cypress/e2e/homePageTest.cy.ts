@@ -1,7 +1,7 @@
 import { HomePage } from '../../cypress/PageObjectModel/homepage';
 const homePagePom = new HomePage();
 
-describe('Test_click_to_service', () => {
+describe('Test_homePage', () => {
   beforeEach(() => {
     homePagePom.navigate();
   });

@@ -4,7 +4,7 @@
       Unsere Team
     </h1>
 
-    <ul class="grid grid-cols-3 gap-4 px-10 py-2 text-center">
+    <ul class="grid grid-cols-3 gap-4 px-10 py-2 text-center team_list">
       <div data-aos="fade-up-right">
         <li class="border rounded pb-4 bg-white">
           <img
