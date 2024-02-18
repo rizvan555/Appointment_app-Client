@@ -11,10 +11,19 @@ export class LoginPage {
   }
 
   inputs() {
-    cy.get('input[name="username"]').should('be.visible');
-    cy.get('input[name="password"]').should('be.visible');
-    cy.get('input[name="username"]').type('fateh');
-    cy.get('input[name="password"]').type('111111');
+    // cy.get('input[name="username"]').should('be.visible');
+    // cy.get('input[name="password"]').should('be.visible');
+    // cy.get('input[name="username"]').type('fateh');
+    // cy.get('input[name="password"]').type('111111');
+
+    cy.fixture('loginData').then((credentials) => {
+      cy.get('input[name="username"]')
+        .should('be.visible')
+        .type(credentials.username);
+      cy.get('input[name="password"]')
+        .should('be.visible')
+        .type(credentials.password);
+    });
     cy.get('button[type="submit"]').click();
   }
 }
