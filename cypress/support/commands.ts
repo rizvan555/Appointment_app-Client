@@ -25,6 +25,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
+
+//import 'cypres-file-upload';
+//require('cypress-downloadfile/lib/downloadFileCommand')
+
 // declare global {
 //   namespace Cypress {
 //     interface Chainable {
