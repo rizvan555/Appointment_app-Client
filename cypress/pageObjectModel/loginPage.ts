@@ -1,4 +1,3 @@
-
 export class LoginPage {
   navigate() {
     cy.viewport(1200, 1000);
@@ -18,6 +17,7 @@ export class LoginPage {
     // cy.get('input[name="password"]').type('111111');
 
     cy.fixture('loginData').then((credentials) => {
+      cy.slowDown(2000);
       cy.get('input[name="username"]')
         .should('be.visible')
         .type(credentials.username);
@@ -25,6 +25,7 @@ export class LoginPage {
         .should('be.visible')
         .type(credentials.password);
     });
+    cy.slowDownEnd();
     cy.get('button[type="submit"]').click();
   }
 }
