@@ -1,6 +1,9 @@
+import { slowCypressDown } from 'cypress-slow-down';
 import { LoginPage } from '../../cypress/PageObjectModel/loginPage';
+
 const loginPagePOM = new LoginPage();
 
+slowCypressDown();
 describe('Test_Login', () => {
   beforeEach(() => {
     loginPagePOM.navigate();

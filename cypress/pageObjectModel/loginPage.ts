@@ -1,3 +1,4 @@
+
 export class LoginPage {
   navigate() {
     cy.viewport(1200, 1000);

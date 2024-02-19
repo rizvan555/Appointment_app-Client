@@ -1,8 +1,15 @@
+import { slowCypressDown } from 'cypress-slow-down';
 import { RegisterPage } from '../../cypress/PageObjectModel/registerPage';
+
 const registerPagePOM = new RegisterPage();
 
-it('Test_Register', () => {
-  registerPagePOM.navigate();
-  registerPagePOM.url();
-  registerPagePOM.inputs();
+slowCypressDown();
+describe('Test_Register', () => {
+  beforeEach(() => {
+    registerPagePOM.navigate();
+  });
+  it('Test_Register', () => {
+    registerPagePOM.url();
+    registerPagePOM.inputs();
+  });
 });

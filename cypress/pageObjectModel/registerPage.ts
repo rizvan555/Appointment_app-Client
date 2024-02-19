@@ -16,9 +16,9 @@ export class RegisterPage {
     cy.get('input[name="phone"]').should('be.visible');
     cy.get('input[name="password"]').should('be.visible');
 
-    cy.get('input[name="username"]').type('rizvannn');
-    cy.get('input[name="email"]').type('rizvan@rizvan.de');
-    cy.get('input[name="phone"]').type('004915151400004');
+    cy.get('input[name="username"]').type('Bahram');
+    cy.get('input[name="email"]').type('bahram@bahram.de');
+    cy.get('input[name="phone"]').type('0049151577777');
     cy.get('input[name="password"]').type('111111');
     cy.get('button[type="submit"]').click();
   }
