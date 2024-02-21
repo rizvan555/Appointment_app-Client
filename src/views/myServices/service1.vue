@@ -6,15 +6,6 @@
         <NameService :serviceId="1" />
       </div>
     </div>
-
-    <div
-      class="flex flex-col justify-center items-center mt-2 mx-auto gap-4 w-[18vw]"
-      v-if="!showSuccessMessage && userDetails.username"
-    >
-      <h6 class="text-indigo-950 font-bold">Wählen Sie Ihren Termin</h6>
-      <img :src="DownArrow" alt="Down Arrow" />
-    </div>
-
     <div class="">
       <select-date :showSuccessMessage="showSuccessMessage" />
     </div>
@@ -25,7 +16,6 @@
 import { provide, ref } from 'vue';
 import NameService from '../../components/NameService.vue';
 import SelectDate from '../../components/SelectDate.vue';
-import DownArrow from '../../assets/Icons/down-arrow.gif';
 
 const showSuccessMessage = ref(false);
 const userDetails = ref({ username: '', email: '', phone: '' });
