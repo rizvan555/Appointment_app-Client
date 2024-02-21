@@ -51,6 +51,12 @@ test('test_termin', async ({ page }) => {
   await page.getByRole('link', { name: 'haarImage Trocken schneiden' }).click();
   await page.waitForTimeout(1000);
   await expect(page.url()).toBe('http://localhost:5173/service1');
+  await expect(page.locator('.vc-header > button:nth-child(2)')).toBeVisible();
+  await page.locator('.vc-header > button:nth-child(2)').click();
+  await page.waitForTimeout(1000);
+  await expect(page.locator('.vc-arrow').first()).toBeVisible();
+  await page.locator('.vc-arrow').first().click();
+  await page.waitForTimeout(1000);
   await page.goBack();
   await page
     .getByRole('link', { name: 'haarImage Basis Paket / Basic' })
