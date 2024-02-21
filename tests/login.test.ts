@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import axios from 'axios';
 
 test('test_login', async ({ page }) => {
   await page.goto('http://localhost:5173/');
