@@ -53,7 +53,7 @@
         <v-menu ref="menu">
           <template v-slot:activator="{ props }">
             <button
-              class="border border-gray-800 rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-slate-200"
+              class="avatarLetter border border-gray-800 rounded-full w-[36px] h-[36px] flex justify-center items-center logout-button bg-slate-200"
               v-bind="props"
               v-if="hasToken"
             >
