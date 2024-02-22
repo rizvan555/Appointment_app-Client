@@ -83,11 +83,9 @@ test('test', async ({ page }) => {
   await expect(page.getByText('EntdeckeBarmeramania')).toBeVisible();
   await expect(page.getByText('Geschäftspartner Partner')).toBeVisible();
   await expect(page.getByText('UnternehmenÜber')).toBeVisible();
-
   await expect(page.getByRole('link', { name: 'Kunden-Hilfe' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'bn46' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'bn45' })).toBeVisible();
-
   await expect(
     page.getByRole('link', { name: 'Barmeramania Guide' })
   ).toBeVisible();
@@ -97,5 +95,22 @@ test('test', async ({ page }) => {
   ).toBeVisible();
   await expect(
     page.getByRole('link', { name: 'Newsletter Anmeldung' })
+  ).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Partner werden' })
+  ).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Connect Help Center' })
+  ).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Pro Help Center' })
+  ).toBeVisible();
+  await expect(
+    page.locator('li').filter({ hasText: 'Über uns' }).getByRole('link')
+  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Jobs' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Impressum' })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Cookie-Einstellungen' })
   ).toBeVisible();
 });
