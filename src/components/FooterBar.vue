@@ -2,7 +2,7 @@
   <div
     class="flex justify-center items-start gap-36 bg-slate-900 text-white py-10"
   >
-    <ul class="flex flex-col gap-2">
+    <ul class="list1 flex flex-col gap-2">
       <li class="text-2xl font-semibold my-4"><a href="#">Kontakt</a></li>
       <li class=""><a href="#">Kunden-Hilfe</a></li>
       <li>
@@ -27,7 +27,7 @@
       </li>
     </ul>
 
-    <ul class="flex flex-col gap-2">
+    <ul class="list2 flex flex-col gap-2">
       <li class="text-2xl font-semibold my-4 text-slate-300">Entdecke</li>
       <li><a href="#">Barmeramania Guide</a></li>
       <li><a href="#">User Blog</a></li>
@@ -35,7 +35,7 @@
       <li><a href="#">Newsletter Anmeldung</a></li>
     </ul>
 
-    <ul class="flex flex-col gap-2">
+    <ul class="list3 flex flex-col gap-2">
       <li class="text-2xl font-semibold my-4 text-slate-300">
         Geschäftspartner
       </li>
@@ -44,7 +44,7 @@
       <li><a href="#">Pro Help Center</a></li>
     </ul>
 
-    <ul class="flex flex-col gap-2">
+    <ul class="list4 flex flex-col gap-2">
       <li class="text-2xl font-semibold my-4 text-slate-300">Unternehmen</li>
       <li><a href="#">Über uns</a></li>
       <li><a href="#">Jobs</a></li>

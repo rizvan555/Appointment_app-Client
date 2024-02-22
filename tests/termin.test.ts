@@ -28,7 +28,7 @@ test('test_termin', async ({ page }) => {
 
   await expect(page.getByRole('link', { name: 'Termin' })).toBeVisible();
   await page.getByRole('link', { name: 'Termin' }).click();
-  await expect(page.url()).toBe('http://localhost:5173/termin');
+  expect(page.url()).toBe('http://localhost:5173/termin');
   await page.waitForTimeout(1000);
   await expect(
     page.getByRole('heading', { name: 'Unsere Angebote' })
@@ -50,7 +50,7 @@ test('test_termin', async ({ page }) => {
 
   await page.getByRole('link', { name: 'haarImage Trocken schneiden' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service1');
+  expect(page.url()).toBe('http://localhost:5173/service1');
   await expect(page.locator('.vc-header > button:nth-child(2)')).toBeVisible();
   await page.locator('.vc-header > button:nth-child(2)').click();
   await page.waitForTimeout(1000);
@@ -62,38 +62,38 @@ test('test_termin', async ({ page }) => {
     .getByRole('link', { name: 'haarImage Basis Paket / Basic' })
     .click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service2');
+  expect(page.url()).toBe('http://localhost:5173/service2');
   await page.goBack();
   await page.getByRole('link', { name: 'haarImage Kinderhaarschnitt' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service3');
+  expect(page.url()).toBe('http://localhost:5173/service3');
   await page.goBack();
   await page
     .getByRole('link', { name: 'haarImage Augenbrauen zupfen(' })
     .click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service4');
+  expect(page.url()).toBe('http://localhost:5173/service4');
   await page.goBack();
   await page.getByRole('link', { name: 'haarImage Bartschnitt &' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service5');
+  expect(page.url()).toBe('http://localhost:5173/service5');
   await page.goBack();
   await page
     .getByRole('link', { name: 'haarImage Bartpflege Classic' })
     .click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service6');
+  expect(page.url()).toBe('http://localhost:5173/service6');
   await page.goBack();
   await page.getByRole('link', { name: 'haarImage Deluxe Paket /' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service7');
+  expect(page.url()).toBe('http://localhost:5173/service7');
   await page.goBack();
   await page.getByRole('link', { name: 'haarImage Premium Paket /' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service8');
+  expect(page.url()).toBe('http://localhost:5173/service8');
   await page.goBack();
   await page.getByRole('link', { name: 'haarImage Nassrasur Model /' }).click();
   await page.waitForTimeout(1000);
-  await expect(page.url()).toBe('http://localhost:5173/service9');
+  expect(page.url()).toBe('http://localhost:5173/service9');
   await page.goBack();
 });
